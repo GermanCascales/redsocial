@@ -106,7 +106,11 @@
                         </div>
 
                         <div class="mt-8">
-                            <button class="w-20 bg-gray-200 border border-gray-200 hover:border-gray-400 font-bold text-xxs uppercase rounded-xl transition duration-150 ease-in px-4 py-3">Me gusta</button>
+                            <button class="bg-gray-200 border border-gray-200 hover:border-gray-400 font-bold text-xxs uppercase rounded-xl transition duration-150 ease-in px-4 py-3">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                </svg>
+                            </button>
                         </div>
                     </div>
                     <div class="flex flex-col md:flex-row flex-1 px-2 py-6">
@@ -117,7 +121,7 @@
                         </div>
                         <div class="w-full flex flex-col justify-between mx-2 md:mx-4">
                             <h4 class="text-xl font-semibold mt-2 md:mt-0">
-                                <a href="#" class="hover:underline">{{ $post->title }}</a>
+                                <a href="{{ route('posts.show', ['post' => $post->id]) }}" class="hover:underline">{{ $post->title }}</a>
                             </h4>
                             <div class="text-gray-600 mt-3 line-clamp-3">
                                 {{ $post->description }}
@@ -149,16 +153,18 @@
                                         <div class="text-sm font-bold leading-none">12</div>
                                         <div class="text-xxs font-semibold leading-none text-gray-400">me gusta</div>
                                     </div>
-                                    <button class="w-20 bg-gray-200 border border-gray-200 font-bold text-xxs uppercase rounded-xl hover:border-gray-400 transition duration-150 ease-in px-4 py-3 -mx-5">
-                                        Me gusta
+                                    <button class="bg-gray-200 border border-gray-200 font-bold text-xxs uppercase rounded-xl hover:border-gray-400 transition duration-150 ease-in px-4 py-3 -mx-5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
+                                        </svg>
                                     </button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                </div> <!-- end idea-container -->
+                </div> <!-- end post-container -->
                 @endforeach
-            </div> <!-- end ideas-container -->
+            </div> <!-- end posts-container -->
 
             <div class="my-8">
                 {{ $posts->links() }}
