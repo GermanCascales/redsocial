@@ -1150,21 +1150,13 @@ select {
 	margin-left: -1.25rem;
 	margin-right: -1.25rem;
 }
-.my-8 {
-	margin-top: 2rem;
-	margin-bottom: 2rem;
-}
-.my-4 {
-	margin-top: 1rem;
-	margin-bottom: 1rem;
-}
-.my-5 {
-	margin-top: 1.25rem;
-	margin-bottom: 1.25rem;
-}
 .my-6 {
 	margin-top: 1.5rem;
 	margin-bottom: 1.5rem;
+}
+.my-8 {
+	margin-top: 2rem;
+	margin-bottom: 2rem;
 }
 .ml-3 {
 	margin-left: 0.75rem;
@@ -1352,11 +1344,11 @@ select {
 .w-28 {
 	width: 7rem;
 }
-.w-70 {
-	width: 17.5rem;
-}
 .w-1\/2 {
 	width: 50%;
+}
+.w-70 {
+	width: 17.5rem;
 }
 .w-175 {
 	width: 43.75rem;
@@ -2034,6 +2026,7 @@ select {
 	-webkit-box-orient: vertical;
 	-webkit-line-clamp: 3;
 }
+[x-cloak] { display: none !important; }
 /* vertical line to the left of the comments */
 .comments-container::before {
     position: absolute;
