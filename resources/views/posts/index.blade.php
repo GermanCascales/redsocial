@@ -1,7 +1,7 @@
 <x-app-layout>
-    <div class="w-70 mr-5">
+    <div class="w-70 mx-auto md:mx-0 md:mr-5">
     <div
-                    class="bg-white border-2 border-blue rounded-xl mt-16"
+                    class="bg-white md:sticky md:top-8 border-2 border-blue rounded-xl md:mt-16"
                     style="
                           border-image-source: linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
                             border-image-slice: 1;
@@ -54,8 +54,8 @@
                 </div>
     </div>
 
-    <div class="w-175">
-        <nav class="flex items-center justify-between text-xs">
+    <div class="w-full px-2 md:px-0 md:w-175">
+        <nav class="hidden md:flex items-center justify-between text-xs">
             <ul class="flex uppercase font-semibold border-b-4 pb-3 space-x-10">
                 <li><a href="#" class="border-b-4 pb-3 border-blue">Todas</a></li>
                 <li><a href="#" class="text-gray-400 transition duration-150 ease-in border-b-4 pb-3 hover:border-blue">Categoría 1</a></li>
@@ -141,8 +141,8 @@
                                         <svg fill="currentColor" width="24" height="6">
                                             <path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)">
                                         </svg>
-                                        <ul x-cloak x-show="isOpen" x-transition.origin.top.left @click.away="isOpen = false" @keydown.escape.window="isOpen = false" class="absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl py-3 md:ml-8 top-8 md:top-6 right-0 md:left-0">
-                                            <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Marcar como spam</a></li>
+                                        <ul x-cloak x-show="isOpen" x-transition.origin.top.left @click.away="isOpen = false" @keydown.escape.window="isOpen = false" class="absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl z-10 py-3 md:ml-8 top-8 md:top-6 right-0 md:left-0">
+                                            <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Marcar como inapropiado</a></li>
                                             <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Eliminar post</a></li>
                                         </ul>
                                     </button>
@@ -153,8 +153,8 @@
                                         <div class="text-sm font-bold leading-none">12</div>
                                         <div class="text-xxs font-semibold leading-none text-gray-400">me gusta</div>
                                     </div>
-                                    <button class="bg-gray-200 border border-gray-200 font-bold text-xxs uppercase rounded-xl hover:border-gray-400 transition duration-150 ease-in px-4 py-3 -mx-5">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                    <button class="bg-gray-200 border border-gray-200 font-bold text-xxs uppercase rounded-xl hover:border-gray-400 transition duration-150 ease-in px-3 py-2 -mx-5">
+                                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
                                         </svg>
                                     </button>

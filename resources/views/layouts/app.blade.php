@@ -34,7 +34,7 @@
             @endif
 
             <!-- Page Content -->
-            <main class="container mx-auto max-w-custom flex mt-4">
+            <main class="container mx-auto max-w-custom flex flex-col md:flex-row my-4">
                     {{ $slot }}          
             </main>
         </div>
