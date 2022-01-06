@@ -17,7 +17,7 @@
 
                     <form action="#" method="POST" class="space-y-4 px-4 py-6">
                         <div>
-                            <input type="text" class="w-full text-sm bg-gray-100 border-none rounded-xl placeholder-gray-900 px-4 py-2" placeholder="Título">
+                            <input type="text" name="title" class="w-full text-sm bg-gray-100 border-none rounded-xl placeholder-gray-900 px-4 py-2" placeholder="Título">
                         </div>
                         <div>
                             <select name="category_add" id="category_add" class="w-full bg-gray-100 text-sm rounded-xl border-none px-4 py-2">
@@ -28,7 +28,7 @@
                             </select>
                         </div>
                         <div>
-                            <textarea name="idea" id="idea" cols="30" rows="4" class="w-full bg-gray-100 rounded-xl border-none placeholder-gray-900 text-sm px-4 py-2" placeholder="Descripción"></textarea>
+                            <textarea name="description" id="description" cols="30" rows="4" class="w-full bg-gray-100 rounded-xl border-none placeholder-gray-900 text-sm px-4 py-2" placeholder="Descripción"></textarea>
                         </div>
                         <div class="flex items-center justify-between space-x-3">
                             <button
