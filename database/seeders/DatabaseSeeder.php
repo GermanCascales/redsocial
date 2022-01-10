@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Post;
+use App\Models\PostType;
 use App\Models\User;
 use Illuminate\Database\Seeder;
 
@@ -27,6 +28,10 @@ class DatabaseSeeder extends Seeder
         Category::factory()->create(['name' => 'Categoría 2']);
         Category::factory()->create(['name' => 'Categoría 3']);
 
-        Post::factory(10)->create();
+        PostType::factory()->create(['name' => 'Mensaje', 'style' => 'bg-blue text-white']);
+        PostType::factory()->create(['name' => 'Pregunta', 'style' => 'bg-yellow']);
+        PostType::factory()->create(['name' => 'Sugerencia', 'style' => 'bg-green text-white']);
+
+        Post::factory(15)->create();
     }
 }

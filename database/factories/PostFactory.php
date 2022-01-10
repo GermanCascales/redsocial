@@ -27,7 +27,8 @@ class PostFactory extends Factory {
             'title' => ucwords($this->faker->words(4, true)),
             'description' => $this->faker->paragraph(10),
             'user_id' => 1,
-            'category_id' => $this->faker->numberBetween(1, 3)
+            'category_id' => $this->faker->numberBetween(1, 3),
+            'post_type_id' => $this->faker->numberBetween(1, 3)
         ];
     }
 }
