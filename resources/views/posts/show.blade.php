@@ -30,7 +30,7 @@
                             <div>&bull;</div>
                             <div>{{ $post->created_at->diffForHumans() }}</div>
                             <div>&bull;</div>
-                            <div>Categoría 1</div>
+                            <div>{{ $post->category->name }}</div>
                             <div>&bull;</div>
                             <div class="text-gray-900">3 comentarios</div>
                         </div>
