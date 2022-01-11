@@ -61,12 +61,12 @@
                 <div class="post-container hover:shadow-card transition duration-150 ease-in bg-white rounded-xl flex">
                     <div class="hidden md:block border-r border-gray-100 px-5 py-8">
                         <div class="text-center">
-                            <div class="font-semibold text-2xl">{{ $post->likes_count }}</div>
+                            <div class="font-semibold text-2xl @if($post->liked_by_user) text-blue @endif">{{ $post->likes_count }}</div>
                             <div class="text-gray-500">me gusta</div>
                         </div>
 
                         <div class="mt-8">
-                            <button class="bg-gray-200 border border-gray-200 hover:border-gray-400 font-bold text-xxs uppercase rounded-xl transition duration-150 ease-in px-4 py-3">
+                            <button class="border @if($post->liked_by_user) text-white bg-blue border-blue hover:bg-blue-hover @else bg-gray-200 border-gray-200 hover:border-gray-400 @endif font-bold text-xxs uppercase rounded-xl transition duration-150 ease-in px-4 py-3">
                                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
                                 </svg>
@@ -110,10 +110,10 @@
 
                                 <div class="flex items-center md:hidden mt-4 md:mt-0">
                                     <div class="bg-gray-100 text-center rounded-xl h-10 px-4 py-2 pr-8">
-                                        <div class="text-sm font-bold leading-none">{{ $post->likes_count }}</div>
+                                        <div class="text-sm font-bold leading-none @if($post->liked_by_user) text-blue @endif">{{ $post->likes_count }}</div>
                                         <div class="text-xxs font-semibold leading-none text-gray-400">me gusta</div>
                                     </div>
-                                    <button class="bg-gray-200 border border-gray-200 font-bold text-xxs uppercase rounded-xl hover:border-gray-400 transition duration-150 ease-in px-3 py-2 -mx-5">
+                                    <button class="border @if($post->liked_by_user) text-white bg-blue border-blue hover:bg-blue-hover @else bg-gray-200 border-gray-200 hover:border-gray-400 @endif font-bold text-xxs uppercase rounded-xl hover:border-gray-400 transition duration-150 ease-in px-3 py-2 -mx-5">
                                         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
                                         </svg>

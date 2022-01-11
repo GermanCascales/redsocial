@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
 use App\Models\Category;
+use App\Models\Like;
 use App\Models\Post;
 use App\Models\PostType;
 
@@ -18,6 +19,9 @@ class PostController extends Controller
     public function index() {
         return view('posts.index', [
             'posts' => Post::with('user', 'category')
+                            ->addSelect(['liked_by_user' => Like::select('id')
+                                                                ->where('user_id', auth()->id())
+                                                                ->whereColumn('post_id', 'posts.id')])
                             ->withCount('likes')
                             ->latest('id')
                             ->paginate(10),
@@ -54,7 +58,9 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post) {
-        return view('posts.show', ['post' => $post, 'likes' => $post->likes()->count()]);
+        return view('posts.show', ['post' => $post,
+                                   'likes' => $post->likes()->count(),
+                                   'liked_post' => $post->user_liked(auth()->user())]);
     }
 
     /**
