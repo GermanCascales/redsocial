@@ -1,57 +1,18 @@
 <x-app-layout>
     <div class="w-70 mx-auto md:mx-0 md:mr-5">
-    <div
-                    class="bg-white md:sticky md:top-8 border-2 border-blue rounded-xl md:mt-16"
-                    style="
-                          border-image-source: linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
+        <div class="bg-white md:sticky md:top-8 border-2 border-blue rounded-xl md:mt-16" style="
+                            border-image-source: linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
                             border-image-slice: 1;
                             background-image: linear-gradient(to bottom, #ffffff, #ffffff), linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
                             background-origin: border-box;
-                            background-clip: content-box, border-box;
-                    "
-                >
-                    <div class="text-center px-6 py-2 pt-6">
-                        <h3 class="font-semibold text-base">Crea un post</h3>
-                        <p class="text-xs mt-4">Escribe tu pregunta o lo que piensas</p>
-                    </div>
+                            background-clip: content-box, border-box;">
+            <div class="text-center px-6 py-2 pt-6">
+                <h3 class="font-semibold text-base">Crea un post</h3>
+                <p class="text-xs mt-4">Escribe tu pregunta o lo que piensas</p>
+            </div>
 
-                    <form action="#" method="POST" class="space-y-4 px-4 py-6">
-                        <div>
-                            <input type="text" name="title" class="w-full text-sm bg-gray-100 border-none rounded-xl placeholder-gray-900 px-4 py-2" placeholder="Título">
-                        </div>
-                        <div>
-                            <select name="category_add" id="category_add" class="w-full bg-gray-100 text-sm rounded-xl border-none px-4 py-2">
-                                <option value="Categoría 1">Categoría 1</option>
-                                <option value="Categoría 2">Categoría 2</option>
-                                <option value="Categoría 3">Categoría 3</option>
-                                <option value="Categoría 4">Categoría 4</option>
-                            </select>
-                        </div>
-                        <div>
-                            <textarea name="description" id="description" cols="30" rows="4" class="w-full bg-gray-100 rounded-xl border-none placeholder-gray-900 text-sm px-4 py-2" placeholder="Descripción"></textarea>
-                        </div>
-                        <div class="flex items-center justify-between space-x-3">
-                            <button
-                                type="button"
-                                class="flex items-center justify-center w-1/2 h-11 text-xs bg-gray-200 font-semibold rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in px-6 py-3"
-                            >
-                                <svg class="text-gray-600 w-4 transform -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
-                                </svg>
-                                <span class="ml-1">Adjuntar archivo</span>
-                            </button>
-                            <button
-                                type="submit"
-                                class="flex items-center justify-center w-1/2 h-11 text-xs bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-6 py-3"
-                            >
-                                <svg xmlns="http://www.w3.org/2000/svg" class="w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
-                                </svg>
-                                <span class="ml-1">Publicar</span>
-                            </button>
-                        </div>
-                    </form>
-                </div>
+            <livewire:create-post :categories="$categories" :post_types="$post_types"/>
+        </div>
     </div>
 
     <div class="w-full px-2 md:px-0 md:w-175">
@@ -72,10 +33,9 @@
             <div class="filters flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-6">
                 <div class="w-full md:w-1/3">
                     <select name="category" id="category" class="w-full rounded-xl border-none px-4 py-2">
-                        <option value="Category One">Category One</option>
-                        <option value="Category Two">Category Two</option>
-                        <option value="Category Three">Category Three</option>
-                        <option value="Category Four">Category Four</option>
+                    @foreach ($categories as $category)
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                    @endforeach
                     </select>
                 </div>
                 <div class="w-full md:w-1/3">
@@ -136,7 +96,7 @@
                                     <div class="text-gray-900">3 comentarios</div>
                                 </div>
                                 <div x-data="{ isOpen: false }" class="flex items-center space-x-2 mt-4 md:mt-0">
-                                    <div class="{{ $post->type->style ? $post->type->style : 'bg-gray-200' }} text-xxs font-bold uppercase leading-none rounded-full text-center w-28 h-7 py-2 px-4">{{ $post->type->name }}</div>
+                                    <div class="{{ $post->type->style ? $post->type->style : 'bg-gray-200' }} text-xxs font-bold uppercase leading-none rounded-full text-center h-7 py-2 px-4">{{ $post->type->name }}</div>
                                     <button @click="isOpen = !isOpen" class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 transition duration-150 ease-in py-2 px-3">
                                         <svg fill="currentColor" width="24" height="6">
                                             <path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)">

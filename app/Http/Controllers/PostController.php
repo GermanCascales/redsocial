@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\StorePostRequest;
 use App\Http\Requests\UpdatePostRequest;
+use App\Models\Category;
 use App\Models\Post;
+use App\Models\PostType;
 
 class PostController extends Controller
 {
@@ -15,7 +17,9 @@ class PostController extends Controller
      */
     public function index() {
         return view('posts.index', [
-            'posts' => Post::with('user', 'category')->paginate(10)
+            'posts' => Post::with('user', 'category')->latest('id')->paginate(10),
+            'categories' => Category::all(),
+            'post_types' => PostType::all()
         ]);
     }
 

@@ -1141,6 +1141,12 @@ select {
 .col-span-6 {
 	grid-column: span 6 / span 6;
 }
+.m-1 {
+	margin: 0.25rem;
+}
+.m-2 {
+	margin: 0.5rem;
+}
 .mx-auto {
 	margin-left: auto;
 	margin-right: auto;
@@ -1160,6 +1166,10 @@ select {
 .my-4 {
 	margin-top: 1rem;
 	margin-bottom: 1rem;
+}
+.my-1 {
+	margin-top: 0.25rem;
+	margin-bottom: 0.25rem;
 }
 .ml-3 {
 	margin-left: 0.75rem;
@@ -1341,14 +1351,27 @@ select {
 .w-14 {
 	width: 3.5rem;
 }
-.w-28 {
-	width: 7rem;
-}
 .w-44 {
 	width: 11rem;
 }
 .w-70 {
 	width: 17.5rem;
+}
+.w-28 {
+	width: 7rem;
+}
+.w-screen {
+	width: 100vw;
+}
+.w-min {
+	width: -webkit-min-content;
+	width: -moz-min-content;
+	width: min-content;
+}
+.w-max {
+	width: -webkit-max-content;
+	width: -moz-max-content;
+	width: max-content;
 }
 .min-w-0 {
 	min-width: 0px;
@@ -1677,6 +1700,9 @@ select {
 .p-3 {
 	padding: 0.75rem;
 }
+.p-1 {
+	padding: 0.25rem;
+}
 .px-4 {
 	padding-left: 1rem;
 	padding-right: 1rem;
@@ -1898,6 +1924,10 @@ select {
 .text-gray-300 {
 	--tw-text-opacity: 1;
 	color: rgba(212, 212, 212, var(--tw-text-opacity));
+}
+.text-red {
+	--tw-text-opacity: 1;
+	color: rgba(236, 69, 79, var(--tw-text-opacity));
 }
 .underline {
 	text-decoration: underline;
