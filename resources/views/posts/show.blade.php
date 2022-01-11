@@ -63,7 +63,7 @@
 
             <div class="flex items-center space-x-3">
                 <div class="bg-white font-semibold text-center rounded-xl px-3 py-2">
-                    <div class="text-xl leading-snug">12</div>
+                    <div class="text-xl leading-snug">{{ $likes }}</div>
                     <div class="text-gray-400 text-xs leading-none">me gusta</div>
                 </div>
                 <button type="button" class="text-xs bg-gray-200 font-semibold uppercase rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in p-3">

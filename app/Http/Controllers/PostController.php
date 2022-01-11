@@ -17,7 +17,10 @@ class PostController extends Controller
      */
     public function index() {
         return view('posts.index', [
-            'posts' => Post::with('user', 'category')->latest('id')->paginate(10),
+            'posts' => Post::with('user', 'category')
+                            ->withCount('likes')
+                            ->latest('id')
+                            ->paginate(10),
             'categories' => Category::all(),
             'post_types' => PostType::all()
         ]);
@@ -51,7 +54,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post) {
-        return view('posts.show', ['post' => $post]);
+        return view('posts.show', ['post' => $post, 'likes' => $post->likes()->count()]);
     }
 
     /**

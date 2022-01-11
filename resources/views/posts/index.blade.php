@@ -61,7 +61,7 @@
                 <div class="post-container hover:shadow-card transition duration-150 ease-in bg-white rounded-xl flex">
                     <div class="hidden md:block border-r border-gray-100 px-5 py-8">
                         <div class="text-center">
-                            <div class="font-semibold text-2xl">12</div>
+                            <div class="font-semibold text-2xl">{{ $post->likes_count }}</div>
                             <div class="text-gray-500">me gusta</div>
                         </div>
 
@@ -110,7 +110,7 @@
 
                                 <div class="flex items-center md:hidden mt-4 md:mt-0">
                                     <div class="bg-gray-100 text-center rounded-xl h-10 px-4 py-2 pr-8">
-                                        <div class="text-sm font-bold leading-none">12</div>
+                                        <div class="text-sm font-bold leading-none">{{ $post->likes_count }}</div>
                                         <div class="text-xxs font-semibold leading-none text-gray-400">me gusta</div>
                                     </div>
                                     <button class="bg-gray-200 border border-gray-200 font-bold text-xxs uppercase rounded-xl hover:border-gray-400 transition duration-150 ease-in px-3 py-2 -mx-5">
