@@ -39,6 +39,9 @@ module.exports = {
                 70: '17.5rem',
                 175: '43.75rem',
             },
+            minWidth: {
+                '75vh': '75vh'
+            },
             maxWidth: {
                 custom: '62.5rem',
             },

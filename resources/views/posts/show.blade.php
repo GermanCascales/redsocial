@@ -16,7 +16,7 @@
                         <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
                     </a>
                 </div>
-                <div class="w-full flex flex-col justify-between mx-2 md:mx-4">
+                <div class="w-full md:min-w-75vh flex flex-col justify-between mx-2 md:mx-4">
                     <h4 class="text-xl font-semibold mt-2 md:mt-0">
                         {{ $post->title }}
                     </h4>

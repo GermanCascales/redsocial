@@ -1896,6 +1896,10 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(236, 69, 79, var(--tw-text-opacity));
 }
+.text-blue {
+	--tw-text-opacity: 1;
+	color: rgba(50, 138, 241, var(--tw-text-opacity));
+}
 .text-gray-200 {
 	--tw-text-opacity: 1;
 	color: rgba(229, 229, 229, var(--tw-text-opacity));
@@ -1903,10 +1907,6 @@ select {
 .text-gray-300 {
 	--tw-text-opacity: 1;
 	color: rgba(212, 212, 212, var(--tw-text-opacity));
-}
-.text-blue {
-	--tw-text-opacity: 1;
-	color: rgba(50, 138, 241, var(--tw-text-opacity));
 }
 .underline {
 	text-decoration: underline;
@@ -2509,6 +2509,10 @@ select {
 
 	.md\:w-2\/3 {
 		width: 66.666667%;
+	}
+
+	.md\:min-w-75vh {
+		min-width: 75vh;
 	}
 
 	.md\:grid-cols-3 {
