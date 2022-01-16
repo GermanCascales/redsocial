@@ -58,9 +58,7 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function show(Post $post) {
-        return view('posts.show', ['post' => $post,
-                                   'likes' => $post->likes()->count(),
-                                   'liked_post' => $post->user_liked(auth()->user())]);
+        return view('posts.show', ['post' => $post]);
     }
 
     /**
