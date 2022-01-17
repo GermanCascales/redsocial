@@ -58,7 +58,7 @@
 
             <div class="posts-container space-y-6 my-8">
                 @foreach ($posts as $post)
-                    <livewire:index-post :post="$post"/>
+                    <livewire:index-post :post="$post" :likes="$post->likes_count"/>
                 @endforeach
             </div> <!-- end posts-container -->
 

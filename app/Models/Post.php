@@ -35,4 +35,13 @@ class Post extends Model
     public function user_liked(User $user) {
         return Like::where('user_id', $user->id)->where('post_id', $this->id)->exists();
     }
+
+    public function create_like(User $user) {
+        Like::create(['post_id' => $this->id,
+                      'user_id' => $user->id]);
+    }
+
+    public function delete_like(User $user) {
+        Like::where('post_id', $this->id)->where('user_id', $user->id)->first()->delete();
+    }
 }

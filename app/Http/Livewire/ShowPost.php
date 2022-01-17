@@ -13,6 +13,22 @@ class ShowPost extends Component {
         $this->likes = $post->likes()->count();
     }
 
+    public function like_button() {
+        if (!auth()->check()) {
+            return redirect(route('login'));
+        }
+
+        if ($this->likedPost) {
+            $this->post->delete_like(auth()->user());
+            $this->likedPost = false;
+            $this->likes--;
+        } else {
+            $this->post->create_like(auth()->user());
+            $this->likedPost = true;
+            $this->likes++;
+        }
+    }
+
     public function render() {
         return view('livewire.show-post');
     }
