@@ -37,9 +37,7 @@ class Post extends Model
     }
 
     public function create_like(User $user) {
-        if (!$this->user_liked($user)) {
-            $this->likes()->attach($user);
-        }
+        $this->likes()->syncWithoutDetaching($user); // no devuelve excepción así que no se necesita comprobar antes si ya se añadió
     }
 
     public function delete_like(User $user) {
