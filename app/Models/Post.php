@@ -29,7 +29,7 @@ class Post extends Model
     }
 
     public function likes() {
-        return $this->belongsToMany(User::class, 'likes');
+        return $this->belongsToMany(User::class, 'likes')->withTimestamps();
     }
 
     public function user_liked(User $user) {
@@ -37,11 +37,12 @@ class Post extends Model
     }
 
     public function create_like(User $user) {
-        Like::create(['post_id' => $this->id,
-                      'user_id' => $user->id]);
+        if (!$this->user_liked($user)) {
+            $this->likes()->attach($user);
+        }
     }
 
     public function delete_like(User $user) {
-        Like::where('post_id', $this->id)->where('user_id', $user->id)->first()->delete();
+        $this->likes()->detach($user); // no devuelve excepción así que no se necesita comprobar antes si ya se eliminó
     }
 }
