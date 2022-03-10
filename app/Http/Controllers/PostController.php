@@ -9,27 +9,7 @@ use App\Models\Like;
 use App\Models\Post;
 use App\Models\PostType;
 
-class PostController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index() {
-        return view('posts.index', [
-            'posts' => Post::with('user', 'category')
-                            ->addSelect(['liked_by_user' => Like::select('id')
-                                                                ->where('user_id', auth()->id())
-                                                                ->whereColumn('post_id', 'posts.id')])
-                            ->withCount('likes')
-                            ->latest('id')
-                            ->paginate(10),
-            'categories' => Category::all(),
-            'post_types' => PostType::all()
-        ]);
-    }
-
+class PostController extends Controller {
     /**
      * Show the form for creating a new resource.
      *
