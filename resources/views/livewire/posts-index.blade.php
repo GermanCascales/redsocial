@@ -36,7 +36,7 @@
                 </select>
             </div>
             <div class="w-full md:w-2/3 relative">
-                <input type="search" placeholder="buscar..." class="w-full rounded-xl bg-white border-none placeholder-gray-900 px-4 py-2 pl-8">
+                <input wire:model.debounce.500ms="search" type="search" placeholder="buscar..." class="w-full rounded-xl bg-white border-none placeholder-gray-900 px-4 py-2 pl-8">
                 <div class="absolute top-0 flex itmes-center h-full ml-2">
                     <svg class="w-4 text-gray-700" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
@@ -46,9 +46,14 @@
         </div> <!-- end filters -->
 
         <div class="posts-container space-y-6 my-8">
-            @foreach ($posts as $post)
-            <livewire:index-post :post="$post" :likes="$post->likes_count" :key="$post->id" />
-            @endforeach
+            @forelse ($posts as $post)
+                <livewire:index-post :post="$post" :likes="$post->likes_count" :key="$post->id" />
+            @empty
+                <div class="mx-auto w-70 mt-12">
+                    <img src="{{ asset('img/no-results.png') }}" alt="Sin resultados" class="mx-auto"/>
+                    <div class="text-gray text-center font-bold mt-6"">No se encontró ningún post con los parámetros indicados.</div>
+                </div>
+            @endforelse
         </div> <!-- end posts-container -->
 
         <div class="my-8">

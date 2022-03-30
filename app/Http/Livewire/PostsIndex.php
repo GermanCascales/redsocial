@@ -14,8 +14,9 @@ class PostsIndex extends Component {
     use WithPagination;
 
     public $category;
+    public $search;
 
-    protected $queryString = ['category'];
+    protected $queryString = ['category', 'search'];
     protected $listeners = ['queryStringUpdatedCategory'];
 
     public function queryStringUpdatedCategory($category) {
@@ -31,6 +32,10 @@ class PostsIndex extends Component {
             'posts' => Post::with('user', 'category')
                             ->when($this->category !== null, function($query) use ($categories) {
                                 return $query->where('category_id', $categories->get($this->category));
+                            })
+                            ->when(strlen($this->search) >= 2, function($query) use ($categories) {
+                                return $query->where('title', 'like', '%'.$this->search.'%')
+                                             ->orWhere('description', 'like', '%'.$this->search.'%');
                             })
                             ->addSelect(['liked_by_user' => Like::select('id')
                                                                 ->where('user_id', auth()->id())
