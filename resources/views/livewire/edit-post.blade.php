@@ -1,4 +1,12 @@
-<div x-cloak x-data="{ isOpen: false }" x-show="isOpen" @keydown.escape.window="isOpen = false" @custom-show-edit.window="isOpen = true" class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+<div
+    x-cloak x-data="{ isOpen: false }"
+    x-init="window.livewire.on('postUpdated', () => {
+                isOpen = false
+            })"
+    x-show="isOpen"
+    @keydown.escape.window="isOpen = false"
+    @custom-show-edit.window="isOpen = true"
+    class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
   <div x-show="isOpen" x-transition.opacity class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
   <div x-show="isOpen" x-transition.origin.top.duration.400ms class="fixed z-10 inset-0 overflow-y-auto">
@@ -21,9 +29,10 @@
                 </svg>
             </button>
         </div>
+        <form wire:submit.prevent="updatePost" action="#" method="POST">
         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <h3 class="text-center text-lg font-medium text-gray-900">Editar Post</h3>
-            <form wire:submit.prevent="createPost" action="#" method="POST" class="space-y-4 px-4 py-6">
+            <div class="space-y-4 px-4 py-6">
                 @if (session('success_alert'))
                     <div x-data="{ isVisible: true }" x-init="setTimeout(() => { isVisible = false }, 3500)" x-show="isVisible" x-transition.duration.500ms class="bg-green-200 border border-green-300 text-green-700 px-2 py-1 rounded">
                         <span>{{ session('success_alert') }}</span>
@@ -37,7 +46,9 @@
                 </div>
                 <div>
                     <select wire:model.defer="category_id" name="category_id" id="category_id" class="w-full bg-gray-100 text-sm rounded-xl border-none px-4 py-2">
-                            <option value="$category->id">$category->name</option>
+                        @foreach ($categories as $category)
+                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        @endforeach
                     </select>
                     @error('category_id')
                         <p class="text-red text-xs mt-1 px-1">{{ $message }} </p>
@@ -45,7 +56,9 @@
                 </div>
                 <div>
                     <select wire:model.defer="post_type_id" name="post_type_id" id="post_type_id" class="w-full bg-gray-100 text-sm rounded-xl border-none px-4 py-2">
-                            <option value="$post_type->id">$post_type->name</option>
+                        @foreach ($post_types as $post_type)
+                            <option value="{{ $post_type->id }}">{{ $post_type->name }}</option>
+                        @endforeach
                     </select>
                     @error('post_type_id')
                         <p class="text-red text-xs mt-1 px-1">{{ $message }} </p>
@@ -65,12 +78,13 @@
                         <span class="ml-1">Adjuntar archivo</span>
                     </button>
                 </div>
-            </form>
+            </div>
         </div>
         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-          <button type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">Editar</button>
+          <button type="submit" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-blue text-base font-medium text-white hover:bg-red-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">Editar</button>
           <button type="button" @click="isOpen = false" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancelar</button>
         </div>
+        </form>
       </div>
     </div>
   </div>

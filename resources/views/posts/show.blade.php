@@ -11,7 +11,7 @@
 
         <livewire:show-post :post="$post"/>
 
-        <livewire:edit-post/>
+        <livewire:edit-post :post="$post"/>
 
         <div class="comments-container relative space-y-6 md:ml-20 mt-4 md:my-6">
             <div class="comment-container relative bg-white rounded-xl flex mt-4">

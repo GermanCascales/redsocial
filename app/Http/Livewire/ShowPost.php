@@ -8,6 +8,8 @@ class ShowPost extends Component {
 
     public $post, $likedPost, $likes;
 
+    protected $listeners = ['postUpdated' => '$refresh'];
+
     public function mount($post) {
         $this->likedPost = $post->user_liked(auth()->user());
         $this->likes = $post->likes()->count();
