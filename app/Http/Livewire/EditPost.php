@@ -6,8 +6,11 @@ use App\Models\Category;
 use App\Models\Post;
 use App\Models\PostType;
 use Livewire\Component;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class EditPost extends Component {
+    use AuthorizesRequests;
+
     public $post;
 
     public $title, $description, $category_id, $post_type_id;
@@ -28,7 +31,7 @@ class EditPost extends Component {
     }
 
     public function updatePost() {
-        // Authorization
+        $this->authorize('update', $this->post);
 
         $this->validate();
 
