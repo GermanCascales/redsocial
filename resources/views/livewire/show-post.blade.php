@@ -37,7 +37,9 @@
                                     <li><a href="#" @click="isOptionsOpen = false; $dispatch('custom-show-edit')" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Editar post</a></li>
                                 @endcan
                                     <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Marcar como inapropiado</a></li>
-                                    <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Eliminar post</a></li>
+                                @can('delete', $post)
+                                    <li><a href="#" @click="isOptionsOpen = false; $dispatch('custom-show-delete')" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Eliminar post</a></li>
+                                @endcan
                             </ul>
                         </div>
                     </div>

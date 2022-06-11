@@ -31,6 +31,7 @@ module.exports = {
                 'yellow' : '#ffc73c',
                 'yellow-hover' : '#f9b100',
                 'red' : '#ec454f',
+                'red-100' : '#fee2e2',
                 'red-hover' : '#ed000e',
                 'green' : '#1aab8b',
                 'purple' : '#8b60ed',
