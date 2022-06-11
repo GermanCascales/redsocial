@@ -1,8 +1,5 @@
 <div
     x-cloak x-data="{ isOpen: false }"
-    x-init="window.livewire.on('postDeleted', () => {
-                isOpen = false
-            })"
     x-show="isOpen"
     @keydown.escape.window="isOpen = false"
     @custom-show-delete.window="isOpen = true; $nextTick(() => $refs.deleteBtn.focus())"
