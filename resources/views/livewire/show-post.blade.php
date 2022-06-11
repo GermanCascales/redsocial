@@ -34,11 +34,11 @@
                             </button>
                             <ul x-cloak x-show="isOptionsOpen" x-transition.origin.top.left @click.away="isOptionsOpen = false" @keydown.escape.window="isOptionsOpen = false" class="absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl z-10 py-3 md:ml-8 top-8 md:top-6 right-0 md:left-0">
                                 @can('update', $post)
-                                    <li><a href="#" @click="isOptionsOpen = false; $dispatch('custom-show-edit')" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Editar post</a></li>
+                                    <li><a href="#" @click.prevent="isOptionsOpen = false; $dispatch('custom-show-edit')" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Editar post</a></li>
                                 @endcan
                                     <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Marcar como inapropiado</a></li>
                                 @can('delete', $post)
-                                    <li><a href="#" @click="isOptionsOpen = false; $dispatch('custom-show-delete')" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Eliminar post</a></li>
+                                    <li><a href="#" @click.prevent="isOptionsOpen = false; $dispatch('custom-show-delete')" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Eliminar post</a></li>
                                 @endcan
                             </ul>
                         </div>
