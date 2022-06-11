@@ -5,7 +5,7 @@
             })"
     x-show="isOpen"
     @keydown.escape.window="isOpen = false"
-    @custom-show-delete.window="isOpen = true"
+    @custom-show-delete.window="isOpen = true; $nextTick(() => $refs.deleteBtn.focus())"
     class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
   <div x-show="isOpen" x-transition.opacity.duration.400ms class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
@@ -29,7 +29,7 @@
           </div>
         </div>
         <div class="bg-gray-50 px-4 py-3 sm:px-6 sm:flex sm:flex-row-reverse">
-          <button wire:click="deletePost" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red text-base font-medium text-white hover:bg-red-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm">Eliminar</button>
+          <button wire:click="deletePost" type="button" class="w-full inline-flex justify-center rounded-md border border-transparent shadow-sm px-4 py-2 bg-red text-base font-medium text-white hover:bg-red-hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 sm:ml-3 sm:w-auto sm:text-sm" x-ref="deleteBtn">Eliminar</button>
           <button type="button" @click="isOpen = false" class="mt-3 w-full inline-flex justify-center rounded-md border border-gray-300 shadow-sm px-4 py-2 bg-white text-base font-medium text-gray-700 hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 sm:mt-0 sm:ml-3 sm:w-auto sm:text-sm">Cancelar</button>
         </div>
       </div>

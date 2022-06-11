@@ -5,7 +5,7 @@
             })"
     x-show="isOpen"
     @keydown.escape.window="isOpen = false"
-    @custom-show-edit.window="isOpen = true"
+    @custom-show-edit.window="isOpen = true; $nextTick(() => $refs.titleInput.focus())"
     class="relative z-10" aria-labelledby="modal-title" role="dialog" aria-modal="true">
   <div x-show="isOpen" x-transition.opacity.duration.400ms class="fixed inset-0 bg-gray-500 bg-opacity-75 transition-opacity"></div>
 
@@ -29,7 +29,7 @@
                     </div>
                 @endif
                 <div>
-                    <input wire:model.defer="title" type="text" name="title" class="w-full text-sm bg-gray-100 border-none rounded-xl placeholder-gray-900 px-4 py-2" placeholder="Título">
+                    <input wire:model.defer="title" type="text" name="title" class="w-full text-sm bg-gray-100 border-none rounded-xl placeholder-gray-900 px-4 py-2" placeholder="Título" x-ref="titleInput">
                     @error('title')
                         <p class="text-red text-xs my-1 px-1">{{ $message }} </p>
                     @enderror
