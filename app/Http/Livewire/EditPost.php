@@ -11,7 +11,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class EditPost extends Component {
     use AuthorizesRequests;
 
-    public $post;
+    public Post $post;
 
     public $title, $description, $category_id, $post_type_id;
 
@@ -23,7 +23,6 @@ class EditPost extends Component {
     ];
 
     public function mount(Post $post) {
-        $this->post = $post;
         $this->title = $post->title;
         $this->description = $post->description;
         $this->category_id = $post->category_id;
