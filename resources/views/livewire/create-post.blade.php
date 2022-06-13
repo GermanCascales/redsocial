@@ -1,9 +1,4 @@
 <form wire:submit.prevent="createPost" action="#" method="POST" class="space-y-4 px-4 py-6">
-    @if (session('success_alert'))
-        <div x-data="{ isVisible: true }" x-init="setTimeout(() => { isVisible = false }, 3500)" x-show="isVisible" x-transition.duration.500ms class="bg-green-200 border border-green-300 text-green-700 px-2 py-1 rounded">
-            <span>{{ session('success_alert') }}</span>
-        </div>
-    @endif
     <div>
         <input wire:model.defer="title" type="text" name="title" class="w-full text-sm bg-gray-100 border-none rounded-xl placeholder-gray-900 px-4 py-2" placeholder="Título">
         @error('title')

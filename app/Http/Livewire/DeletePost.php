@@ -20,6 +20,8 @@ class DeletePost extends Component {
 
         Post::destroy($this->post->id); // TODO: hacer un campo deleted en vez de borrarlo realmente
 
+        session()->flash('ok_alert', 'El post fue eliminado correctamente.');
+
         return redirect()->route('posts.index');
     }
 }

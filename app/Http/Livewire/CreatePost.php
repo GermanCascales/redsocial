@@ -30,7 +30,7 @@ class CreatePost extends Component {
                 'post_type_id' => $this->post_type_id
             ]);
 
-            session()->flash('success_alert', 'El post fue publicado correctamente');
+            session()->flash('ok_alert', 'El post fue publicado correctamente.');
 
             $this->reset();
 

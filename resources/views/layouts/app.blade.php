@@ -33,9 +33,13 @@
                 </header>
             @endif
 
+            @if (session('ok_alert'))
+                <x-alert-ok :from-redirect="true" alert-message="{{ session('ok_alert') }}" />
+            @endif
+
             <!-- Page Content -->
             <main class="container mx-auto max-w-custom flex flex-col md:flex-row my-4">
-                    {{ $slot }}          
+                {{ $slot }}          
             </main>
         </div>
 

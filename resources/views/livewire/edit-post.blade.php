@@ -1,6 +1,6 @@
 <div
     x-cloak x-data="{ isOpen: false }"
-    x-init="window.livewire.on('postUpdated', () => {
+    x-init="Livewire.on('postUpdated', () => {
                 isOpen = false
             })"
     x-show="isOpen"
@@ -23,11 +23,6 @@
         <div class="bg-white px-4 pt-5 pb-4 sm:p-6 sm:pb-4">
             <h3 class="text-center text-lg font-medium text-gray-900">Editar Post</h3>
             <div class="space-y-4 px-4 py-6">
-                @if (session('success_alert'))
-                    <div x-data="{ isVisible: true }" x-init="setTimeout(() => { isVisible = false }, 3500)" x-show="isVisible" x-transition.duration.500ms class="bg-green-200 border border-green-300 text-green-700 px-2 py-1 rounded">
-                        <span>{{ session('success_alert') }}</span>
-                    </div>
-                @endif
                 <div>
                     <input wire:model.defer="title" type="text" name="title" class="w-full text-sm bg-gray-100 border-none rounded-xl placeholder-gray-900 px-4 py-2" placeholder="Título" x-ref="titleInput">
                     @error('title')

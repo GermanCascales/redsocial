@@ -42,6 +42,7 @@ class EditPost extends Component {
         ]);
 
         $this->emit('postUpdated');
+        $this->emit('alertOkVisible', 'El post fue editado correctamente.');
     }
 
     public function render() {

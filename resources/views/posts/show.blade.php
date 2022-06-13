@@ -9,16 +9,20 @@
             </a>
         </div>
 
+        <x-alert-ok />
+
         <livewire:show-post :post="$post"/>
 
-        @can('update', $post)
-            <livewire:edit-post :post="$post"/>
-        @endcan
-        
-        @can('delete', $post)
-            <livewire:delete-post :post="$post"/>
-        @endcan
-        
+        @push('modals')
+            @can('update', $post)
+                <livewire:edit-post :post="$post"/>
+            @endcan
+            
+            @can('delete', $post)
+                <livewire:delete-post :post="$post"/>
+            @endcan
+        @endpush
+
         <div class="comments-container relative space-y-6 md:ml-20 mt-4 md:my-6">
             <div class="comment-container relative bg-white rounded-xl flex mt-4">
                 <div class="flex flex-col md:flex-row flex-1 px-5 py-6">
