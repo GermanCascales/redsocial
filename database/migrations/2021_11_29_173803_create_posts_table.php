@@ -20,6 +20,7 @@ class CreatePostsTable extends Migration
             $table->foreignId('user_id')->constrained();
             $table->foreignId('category_id')->constrained();
             $table->foreignId('post_type_id')->constrained();
+            $table->softDeletes();
             $table->timestamps();
         });
     }

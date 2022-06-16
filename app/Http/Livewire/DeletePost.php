@@ -18,7 +18,7 @@ class DeletePost extends Component {
     public function deletePost() {
         $this->authorize('delete', $this->post);
 
-        Post::destroy($this->post->id); // TODO: hacer un campo deleted en vez de borrarlo realmente
+        Post::destroy($this->post->id);
 
         session()->flash('ok_alert', 'El post fue eliminado correctamente.');
 

@@ -4,10 +4,12 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Post extends Model
 {
     use HasFactory;
+    use SoftDeletes;
 
     /**
      * The attributes that aren't mass assignable.
@@ -30,6 +32,10 @@ class Post extends Model
 
     public function likes() {
         return $this->belongsToMany(User::class, 'likes')->withTimestamps();
+    }
+
+    public function comments() {
+        return $this->hasMany(Comment::class);
     }
 
     public function user_liked(User $user) {
