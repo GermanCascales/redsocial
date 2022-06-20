@@ -1,4 +1,4 @@
-<div class="flex">
+<div class="flex flex-col md:flex-row">
 <div class="w-70 mx-auto md:mx-0 md:mr-5">
     <div class="bg-white md:sticky md:top-8 border-2 border-blue rounded-xl md:mt-16" style="
                             border-image-source: linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
@@ -23,7 +23,7 @@
             <div class="w-full md:w-1/3">
                 <select name="category" id="category" class="w-full rounded-xl border-none px-4 py-2">
                     @foreach ($categories as $category)
-                    <option value="{{ $category->id }}">{{ $category->name }}</option>
+                        <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach
                 </select>
             </div>
@@ -47,11 +47,11 @@
 
         <div class="posts-container space-y-6 my-8">
             @forelse ($posts as $post)
-                <livewire:index-post :post="$post" :likes="$post->likes_count" :key="$post->id" />
+                <livewire:index-post :post="$post" :likes="$post->likes_count" :comments="$post->comments_count" :key="$post->id" />
             @empty
                 <div class="mx-auto w-70 mt-12">
                     <img src="{{ asset('img/no-results.png') }}" alt="Sin resultados" class="mx-auto"/>
-                    <div class="text-gray text-center font-bold mt-6"">No se encontró ningún post con los parámetros indicados.</div>
+                    <div class="text-gray text-center font-bold mt-6">No se encontró ningún post con los parámetros indicados.</div>
                 </div>
             @endforelse
         </div> <!-- end posts-container -->
