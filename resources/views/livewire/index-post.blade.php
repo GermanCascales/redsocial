@@ -33,7 +33,7 @@
                     <div>&bull;</div>
                     <div>{{ $post->category->name }}</div>
                     <div>&bull;</div>
-                    <div class="text-gray-900">3 comentarios</div>
+                    <div class="text-gray-900">{{ $comments }} {{ Str::plural('comentario', $comments) }}</div>
                 </div>
                 <div x-data="{ isOpen: false }" class="flex items-center space-x-2 mt-4 md:mt-0">
                     <div class="flex items-center w-2/3 md:hidden mr-5 md:mt-0">

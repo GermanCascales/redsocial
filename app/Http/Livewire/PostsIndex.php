@@ -41,6 +41,7 @@ class PostsIndex extends Component {
                                                                 ->where('user_id', auth()->id())
                                                                 ->whereColumn('post_id', 'posts.id')])
                             ->withCount('likes')
+                            ->withCount('comments')
                             ->latest('id')
                             ->paginate(10),
             'categories' => Category::all(),

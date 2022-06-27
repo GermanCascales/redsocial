@@ -1,4 +1,8 @@
-<div x-data="{ isCommentsOpen: false }">
+<div
+    x-data="{ isCommentsOpen: false }"
+    x-init="Livewire.on('commentCreated', () => {
+                isCommentsOpen = false
+            })">
     <div class="post-container bg-white rounded-xl flex mt-4">
         <div class="flex flex-col md:flex-row flex-1 px-5 py-6">
             <div class="flex-none mx-2 md:mx-0">
@@ -22,7 +26,7 @@
                         <div>&bull;</div>
                         <div>{{ $post->category->name }}</div>
                         <div>&bull;</div>
-                        <div class="text-gray-900">3 comentarios</div>
+                        <div class="text-gray-900">{{ $post->comments->count() }} {{ Str::plural('comentario', $post->comments->count()) }}</div>
                     </div>
                     <div x-data="{ isOptionsOpen: false }" class="flex items-center space-x-2 mt-4 md:mt-0">
                         <div class="{{ $post->type->style ? $post->type->style : 'bg-gray-200' }} text-xxs font-bold uppercase leading-none rounded-full text-center h-7 py-2 px-4">{{ $post->type->name }}</div>
@@ -72,9 +76,12 @@
     </div>
 
     <div x-cloak x-show="isCommentsOpen" x-transition.origin.top class="font-semibold text-sm bg-white shadow-sm rounded-xl mt-6">
-        <form action="#" class="space-y-4 px-4 py-6">
+        <form wire:submit.prevent="create_comment" action="#" class="space-y-4 px-4 py-6">
             <div>
-                <textarea name="post_comment" id="post_comment" cols="30" rows="4" class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 border-none px-4 py-2" placeholder="Escribe un comentario..."></textarea>
+                <textarea wire:model="comment" name="post_comment" id="post_comment" cols="30" rows="4" class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 @error('comment') border-red @else border-none @enderror px-4 py-2" placeholder="Escribe un comentario..."></textarea>
+                @error('comment')
+                    <p class="text-red text-xs my-1 px-1">{{ $message }} </p>
+                @enderror
             </div>
 
             <div class="flex flex-col md:flex-row items-center md:space-x-3">
@@ -84,7 +91,7 @@
                     </svg>
                     <span class="ml-1">Adjuntar archivo</span>
                 </button>
-                <button type="button" class="flex items-center justify-center w-full md:w-1/2 h-11 text-sm bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-6 py-3 mt-2 md:mt-0">
+                <button type="submit" class="flex items-center justify-center w-full md:w-1/2 h-11 text-sm bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-6 py-3 mt-2 md:mt-0">
                     <svg xmlns="http://www.w3.org/2000/svg" class="w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5H6a2 2 0 00-2 2v11a2 2 0 002 2h11a2 2 0 002-2v-5m-1.414-9.414a2 2 0 112.828 2.828L11.828 15H9v-2.828l8.586-8.586z" />
                     </svg>

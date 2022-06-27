@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Category;
+use App\Models\Comment;
 use App\Models\Post;
 use App\Models\PostType;
 use App\Models\Team;
@@ -38,5 +39,9 @@ class DatabaseSeeder extends Seeder
         PostType::factory()->create(['name' => 'Sugerencia', 'style' => 'bg-green text-white']);
 
         Post::factory(15)->create();
+
+        foreach (Post::all() as $post) {
+            Comment::factory(3)->existing_user()->create(['post_id' => $post->id]);
+        }
     }
 }

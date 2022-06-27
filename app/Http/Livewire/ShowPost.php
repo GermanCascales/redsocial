@@ -2,13 +2,16 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Comment;
 use Livewire\Component;
 
 class ShowPost extends Component {
 
-    public $post, $likedPost, $likes;
+    public $post, $likedPost, $likes, $comment;
 
-    protected $listeners = ['postUpdated' => '$refresh'];
+    protected $listeners = ['postUpdated' => '$refresh',
+                            'commentCreated' => '$refresh'];
+    protected $rules = ['comment' => 'required|min:3'];
 
     public function mount($post) {
         $this->likedPost = $post->user_liked(auth()->user());
@@ -29,6 +32,21 @@ class ShowPost extends Component {
             $this->likedPost = true;
             $this->likes++;
         }
+    }
+
+    public function create_comment() {
+        $this->validate();
+
+        Comment::create([
+            'user_id' => auth()->id(),
+            'post_id' => $this->post->id,
+            'message' => $this->comment
+        ]);
+
+        $this->reset('comment');
+
+        $this->emit('commentCreated');
+        $this->emit('alertOkVisible', 'El comentario fue publicado correctamente.');
     }
 
     public function render() {

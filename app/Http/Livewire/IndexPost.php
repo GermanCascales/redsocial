@@ -2,11 +2,13 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Post;
 use Livewire\Component;
 
 class IndexPost extends Component {
 
-    public $post, $likedPost, $likes;
+    public Post $post;
+    public $likedPost, $likes, $comments;
 
     public function mount($post) {
         $this->likedPost = $post->liked_by_user;
