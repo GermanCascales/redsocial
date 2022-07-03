@@ -7,7 +7,7 @@
         <div class="flex flex-col md:flex-row flex-1 px-5 py-6">
             <div class="flex-none mx-2 md:mx-0">
                 <a href="#">
-                    <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
+                    <img src="{{ $post->user->profile_photo_url }}" alt="avatar" class="w-14 h-14 rounded-xl">
                 </a>
             </div>
             <div class="w-full md:min-w-75vh flex flex-col justify-between mx-2 md:mx-4">
@@ -54,7 +54,7 @@
 
     <div class="buttons-container flex items-center justify-between mt-4 md:mt-6 px-3 md:px-0">
         <div class="flex flex-col md:flex-row items-center space-x-4">
-            <button @click="isCommentsOpen = !isCommentsOpen" class="flex items-center justify-center h-11 text-sm bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-6 py-3">
+            <button @click="isCommentsOpen = !isCommentsOpen; if (isCommentsOpen) { $nextTick(() => $refs.comment.focus()) }" class="flex items-center justify-center h-11 text-sm bg-blue text-white font-semibold rounded-xl border border-blue hover:bg-blue-hover transition duration-150 ease-in px-6 py-3">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 10h.01M12 10h.01M16 10h.01M9 16H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-5 5v-5z" />
                 </svg>
@@ -78,7 +78,7 @@
     <div x-cloak x-show="isCommentsOpen" x-transition.origin.top class="font-semibold text-sm bg-white shadow-sm rounded-xl mt-6">
         <form wire:submit.prevent="create_comment" action="#" class="space-y-4 px-4 py-6">
             <div>
-                <textarea wire:model="comment" name="post_comment" id="post_comment" cols="30" rows="4" class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 @error('comment') border-red @else border-none @enderror px-4 py-2" placeholder="Escribe un comentario..."></textarea>
+                <textarea x-ref="comment" wire:model="comment" name="post_comment" id="post_comment" cols="30" rows="4" class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 @error('comment') border-red @else border-none @enderror px-4 py-2" placeholder="Escribe un comentario..."></textarea>
                 @error('comment')
                     <p class="text-red text-xs my-1 px-1">{{ $message }} </p>
                 @enderror

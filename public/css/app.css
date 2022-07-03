@@ -1133,6 +1133,9 @@ select {
 .inline-flex {
   display: inline-flex;
 }
+.table {
+  display: table;
+}
 .grid {
   display: grid;
 }
@@ -1174,6 +1177,9 @@ select {
 }
 .h-11 {
   height: 2.75rem;
+}
+.h-32 {
+  height: 8rem;
 }
 .h-full {
   height: 100%;
@@ -1237,6 +1243,9 @@ select {
 }
 .w-44 {
   width: 11rem;
+}
+.w-32 {
+  width: 8rem;
 }
 .w-70 {
   width: 17.5rem;

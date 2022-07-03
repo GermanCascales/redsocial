@@ -11,7 +11,11 @@
             <p class="text-xs mt-4">Escribe tu pregunta o lo que piensas</p>
         </div>
 
-        <livewire:create-post :categories="$categories" :post_types="$post_types" />
+        @if(auth()->user()->hasTeamPermission(auth()->user()->currentTeam, 'create'))
+            <livewire:create-post :categories="$categories" :post_types="$post_types" />
+        @else
+            <p class="text-center text-red text-s mt-4">No tiene permiso para publicar</p>
+        @endif
     </div>
 </div>
 
@@ -29,10 +33,9 @@
             </div>
             <div class="w-full md:w-1/3">
                 <select name="other_filters" id="other_filters" class="w-full rounded-xl border-none px-4 py-2">
-                    <option value="Filter One">Filter One</option>
-                    <option value="Filter Two">Filter Two</option>
-                    <option value="Filter Three">Filter Three</option>
-                    <option value="Filter Four">Filter Four</option>
+                    <option value="Mensaje">Mensaje</option>
+                    <option value="PreguntaTwo">Pregunta</option>
+                    <option value="Sugerencia">Sugerencia</option>
                 </select>
             </div>
             <div class="w-full md:w-2/3 relative">
