@@ -37,7 +37,7 @@ module.exports = {
                 'purple' : '#8b60ed',
             },
             spacing: {
-                70: '17.5rem',
+                70: '18.4rem',
                 175: '43.75rem',
             },
             minWidth: {

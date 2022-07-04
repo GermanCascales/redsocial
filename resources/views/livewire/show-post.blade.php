@@ -15,7 +15,7 @@
                     {{ $post->title }}
                 </h4>
                 <div class="text-gray-600 mt-3">
-                    {{ $post->description }}
+                    {!! $post->description !!}
                 </div>
 
                 <div class="flex flex-col md:flex-row md:items-center justify-between mt-6">

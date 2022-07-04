@@ -1,25 +1,36 @@
-<div class="flex flex-col md:flex-row">
-<div class="w-70 mx-auto md:mx-0 md:mr-5">
+<div x-cloak x-data="{ creatingPost: false }" :class="creatingPost ? 'md:flex-col' : 'md:flex-row'" class="flex flex-col">
+<div :class="creatingPost ? 'w-full md:mb-8' : 'w-70'" class="mx-auto md:mx-0 md:mr-5 transition-all transition-slowest ease">
     <div class="bg-white md:sticky md:top-8 border-2 border-blue rounded-xl md:mt-16" style="
                             border-image-source: linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
                             border-image-slice: 1;
                             background-image: linear-gradient(to bottom, #ffffff, #ffffff), linear-gradient(to bottom, rgba(50, 138, 241, 0.22), rgba(99, 123, 255, 0));
                             background-origin: border-box;
                             background-clip: content-box, border-box;">
+
+        <div x-show="creatingPost" class="absolute right-0 pt-4 pr-4">
+            <button @click="creatingPost = false" class="text-gray-400 hover:text-gray-500">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
+                </svg>
+            </button>
+        </div>
+
         <div class="text-center px-6 py-2 pt-6">
             <h3 class="font-semibold text-base">Crea un post</h3>
             <p class="text-xs mt-4">Escribe tu pregunta o lo que piensas</p>
         </div>
 
-        @if(auth()->user()->hasTeamPermission(auth()->user()->currentTeam, 'create'))
-            <livewire:create-post :categories="$categories" :post_types="$post_types" />
-        @else
-            <p class="text-center text-red text-s mt-4">No tiene permiso para publicar</p>
-        @endif
+        <div @click="creatingPost = true">
+            @if(auth()->user()->hasTeamPermission(auth()->user()->currentTeam, 'create'))
+                <livewire:create-post :categories="$categories" :post_types="$post_types" />
+            @else
+                <p class="text-center text-red text-s mt-4">No tiene permiso para publicar</p>
+            @endif
+        </div>
     </div>
 </div>
 
-<div class="w-full px-2 md:px-0 md:w-175">
+<div :class="creatingPost ? 'md:w-full' : 'md:w-175'" class="w-full px-2 md:px-0 md:w-175 transition-all">
     <livewire:categories-links />
 
     <div class="mt-8">

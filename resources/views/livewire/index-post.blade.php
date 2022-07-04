@@ -16,7 +16,7 @@
     <div class="flex flex-col md:flex-row flex-1 px-2 py-6">
         <div class="flex-none mx-2 md:mx-0">
             <a href="#">
-                <img src="https://source.unsplash.com/200x200/?face&crop=face&v=1" alt="avatar" class="w-14 h-14 rounded-xl">
+                <img src="{{ $post->user->profile_photo_url }}" alt="avatar" class="w-14 h-14 rounded-xl">
             </a>
         </div>
         <div class="w-full flex flex-col justify-between mx-2 md:mx-4">
@@ -24,7 +24,7 @@
                 <a href="{{ route('posts.show', $post) }}" class="hover:underline">{{ $post->title }}</a>
             </h4>
             <div class="text-gray-600 mt-3 line-clamp-3">
-                {{ $post->description }}
+                {!! trim(strip_tags(htmlspecialchars_decode($post->description))) !!}
             </div>
 
             <div class="flex flex-col md:flex-row md:items-center justify-between mt-6">

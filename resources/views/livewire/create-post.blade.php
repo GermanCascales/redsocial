@@ -1,9 +1,7 @@
 <form wire:submit.prevent="createPost" action="#" method="POST" class="space-y-4 px-4 py-6">
     <div>
         <input wire:model.defer="title" type="text" name="title" class="w-full text-sm bg-gray-100 border-none rounded-xl placeholder-gray-900 px-4 py-2" placeholder="Título">
-        @error('title')
-            <p class="text-red text-xs my-1 px-1">{{ $message }} </p>
-        @enderror
+        <x-jet-input-error for="title" class="text-red text-xs my-1 px-1" />
     </div>
     <div>
         <select wire:model.defer="category_id" name="category_id" id="category_id" class="w-full bg-gray-100 text-sm rounded-xl border-none px-4 py-2">
@@ -11,9 +9,7 @@
                 <option value="{{ $category->id }}">{{ $category->name }}</option>
             @endforeach
         </select>
-        @error('category_id')
-            <p class="text-red text-xs mt-1 px-1">{{ $message }} </p>
-        @enderror
+        <x-jet-input-error for="category_id" class="text-red text-xs my-1 px-1" />
     </div>
     <div>
         <select wire:model.defer="post_type_id" name="post_type_id" id="post_type_id" class="w-full bg-gray-100 text-sm rounded-xl border-none px-4 py-2">
@@ -21,16 +17,11 @@
                 <option value="{{ $post_type->id }}">{{ $post_type->name }}</option>
             @endforeach
         </select>
-        @error('post_type_id')
-            <p class="text-red text-xs mt-1 px-1">{{ $message }} </p>
-        @enderror
+        <x-jet-input-error for="post_type_id" class="text-red text-xs my-1 px-1" />
     </div>
-    <div>
-        <textarea wire:model.defer="description" name="description" id="description" cols="30" rows="4" class="w-full bg-gray-100 rounded-xl border-none placeholder-gray-900 text-sm px-4 py-2" placeholder="Descripción"></textarea>
-        @error('description')
-            <p class="text-red text-xs px-1">{{ $message }} </p>
-        @enderror
-    </div>
+    <x-ck-editor name="description"/>
+    <x-jet-input-error for="description" class="text-red text-xs my-1 px-1" />
+
     <div class="flex items-center justify-between space-x-3">
         <button type="button" class="flex items-center justify-center w-1/2 h-11 text-xs bg-gray-200 font-semibold rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in px-6 py-3">
             <svg class="text-gray-600 w-4 transform -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">

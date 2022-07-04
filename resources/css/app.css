@@ -39,3 +39,7 @@
     height: calc(100% - 60px);
     background: theme('colors.gray-background');
 }
+
+.ck-editor__editable_inline {
+    min-height: 150px;
+}
