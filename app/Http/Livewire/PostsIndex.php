@@ -29,7 +29,7 @@ class PostsIndex extends Component {
         $categories = Category::pluck('id', 'name');
 
         return view('livewire.posts-index', [
-            'posts' => Post::with('user', 'category')
+            'posts' => Post::with('user', 'category', 'type')
                             ->when($this->category !== null, function($query) use ($categories) {
                                 return $query->where('category_id', $categories->get($this->category));
                             })

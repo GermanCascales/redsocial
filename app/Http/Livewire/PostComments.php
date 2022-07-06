@@ -11,6 +11,6 @@ class PostComments extends Component {
     protected $listeners = ['commentCreated' => '$refresh'];
 
     public function render() {
-        return view('livewire.post-comments', ['comments' => $this->post->comments->sortByDesc('updated_at')]);
+        return view('livewire.post-comments', ['comments' => $this->post->comments->load('user')->sortByDesc('updated_at')]);
     }
 }
