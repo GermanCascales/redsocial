@@ -37,7 +37,7 @@ class ShowPost extends Component {
     public function create_comment() {
         $this->validate();
 
-        Comment::create([
+        $newComment = Comment::create([
             'user_id' => auth()->id(),
             'post_id' => $this->post->id,
             'message' => $this->comment
@@ -45,7 +45,7 @@ class ShowPost extends Component {
 
         $this->reset('comment');
 
-        $this->emit('commentCreated');
+        $this->emit('commentCreated', $newComment->id);
         $this->emit('alertOkVisible', 'El comentario fue publicado correctamente.');
     }
 

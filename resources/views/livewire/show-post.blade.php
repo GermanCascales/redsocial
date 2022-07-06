@@ -1,8 +1,21 @@
 <div
-    x-data="{ isCommentsOpen: false }"
-    x-init="Livewire.on('commentCreated', () => {
-                isCommentsOpen = false
-            })">
+    x-data="{ isCommentsOpen: false, commentId: null }"
+    x-init="Livewire.on('commentCreated', (newComment) => {
+                isCommentsOpen = false;
+                commentId = newComment;
+            });
+            Livewire.hook('message.processed', (message, component) => {
+                if (message.updateQueue[0].payload.event === 'commentCreated' && message.component.fingerprint.name === 'post-comments') {
+                    const newComment = document.querySelector('#comment-' + commentId);
+                    newComment.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                    newComment.classList.replace('bg-white', 'bg-green-50');
+                    newComment.classList.replace('border-blue', 'border-green');
+                    setTimeout(() => {
+                        newComment.classList.replace('bg-green-50', 'bg-white')
+                        newComment.classList.replace('border-green', 'border-blue');
+                    }, 3500);
+                }
+            });">
     <div class="post-container bg-white rounded-xl flex mt-4">
         <div class="flex flex-col md:flex-row flex-1 px-5 py-6">
             <div class="flex-none mx-2 md:mx-0">
@@ -78,7 +91,7 @@
     <div x-cloak x-show="isCommentsOpen" x-transition.origin.top class="font-semibold text-sm bg-white shadow-sm rounded-xl mt-6">
         <form wire:submit.prevent="create_comment" action="#" class="space-y-4 px-4 py-6">
             <div>
-                <textarea x-ref="comment" wire:model="comment" name="post_comment" id="post_comment" cols="30" rows="4" class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 @error('comment') border-red @else border-none @enderror px-4 py-2" placeholder="Escribe un comentario..."></textarea>
+                <textarea x-ref="comment" wire:model.defer="comment" name="post_comment" id="post_comment" cols="30" rows="4" class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 @error('comment') border-red @else border-none @enderror px-4 py-2" placeholder="Escribe un comentario..."></textarea>
                 @error('comment')
                     <p class="text-red text-xs my-1 px-1">{{ $message }} </p>
                 @enderror
