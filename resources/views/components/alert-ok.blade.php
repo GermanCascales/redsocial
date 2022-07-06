@@ -29,7 +29,7 @@
     x-transition:leave="transition ease-in duration-300"
     x-transition:leave-start="opacity-100 translate-y-0"
     x-transition:leave-end="opacity-0 -translate-y-10"
-    class="flex justify-between max-w-sm w-full fixed top-0 right-0 bg-white rounded-xl shadow-lg border px-5 py-4 mx-6 my-16">
+    class="flex justify-between max-w-sm w-full fixed top-0 right-0 bg-white rounded-xl shadow-lg border z-10 px-5 py-4 mx-3 md:mx-6 my-4 md:my-16">
 
     <div class="flex items-center">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
