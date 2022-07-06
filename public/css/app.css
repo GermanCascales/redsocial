@@ -1012,13 +1012,13 @@ select {
   margin-left: auto;
   margin-right: auto;
 }
-.mx-6 {
-  margin-left: 1.5rem;
-  margin-right: 1.5rem;
+.mx-3 {
+  margin-left: 0.75rem;
+  margin-right: 0.75rem;
 }
-.my-16 {
-  margin-top: 4rem;
-  margin-bottom: 4rem;
+.my-4 {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
 }
 .mx-2 {
   margin-left: 0.5rem;
@@ -1032,17 +1032,9 @@ select {
   margin-top: 0.25rem;
   margin-bottom: 0.25rem;
 }
-.my-4 {
-  margin-top: 1rem;
-  margin-bottom: 1rem;
-}
 .my-8 {
   margin-top: 2rem;
   margin-bottom: 2rem;
-}
-.mx-3 {
-  margin-left: 0.75rem;
-  margin-right: 0.75rem;
 }
 .ml-3 {
   margin-left: 0.75rem;
@@ -1527,6 +1519,10 @@ select {
   --tw-border-opacity: 1;
   border-color: rgb(50 138 241 / var(--tw-border-opacity));
 }
+.border-green {
+  --tw-border-opacity: 1;
+  border-color: rgb(26 171 139 / var(--tw-border-opacity));
+}
 .border-red {
   --tw-border-opacity: 1;
   border-color: rgb(236 69 79 / var(--tw-border-opacity));
@@ -1534,10 +1530,6 @@ select {
 .border-gray-400 {
   --tw-border-opacity: 1;
   border-color: rgb(163 163 163 / var(--tw-border-opacity));
-}
-.border-green {
-  --tw-border-opacity: 1;
-  border-color: rgb(26 171 139 / var(--tw-border-opacity));
 }
 .bg-yellow {
   --tw-bg-opacity: 1;
@@ -2496,6 +2488,16 @@ select {
     grid-column: span 1 / span 1;
   }
 
+  .md\:mx-6 {
+    margin-left: 1.5rem;
+    margin-right: 1.5rem;
+  }
+
+  .md\:my-16 {
+    margin-top: 4rem;
+    margin-bottom: 4rem;
+  }
+
   .md\:mx-0 {
     margin-left: 0px;
     margin-right: 0px;
@@ -2509,16 +2511,6 @@ select {
   .md\:my-6 {
     margin-top: 1.5rem;
     margin-bottom: 1.5rem;
-  }
-
-  .md\:my-16 {
-    margin-top: 4rem;
-    margin-bottom: 4rem;
-  }
-
-  .md\:mx-6 {
-    margin-left: 1.5rem;
-    margin-right: 1.5rem;
   }
 
   .md\:mt-0 {
