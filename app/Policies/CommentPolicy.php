@@ -51,9 +51,8 @@ class CommentPolicy
      * @param  \App\Models\Comment  $comment
      * @return \Illuminate\Auth\Access\Response|bool
      */
-    public function update(User $user, Comment $comment)
-    {
-        //
+    public function update(User $user, Comment $comment) {
+        return $user->id == $comment->user_id && now()->subMinutes(30) <= $comment->created_at;
     }
 
     /**

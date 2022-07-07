@@ -34,10 +34,14 @@
                         <ul
                             class="absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl z-10 py-3 md:ml-8 top-8 md:top-6 right-0 md:left-0"
                             x-cloak
-                            x-show.transition.origin.top.left="isCommentOptionsOpen"
+                            x-show="isCommentOptionsOpen"
+                            x-transition.origin.top.left
                             @click.away="isCommentOptionsOpen = false"
                             @keydown.escape.window="isCommentOptionsOpen = false"
                         >
+                            @can('update', $comment)
+                                <li><a href="#" @click.prevent="isOptionsOpen = false; Livewire.emit('setCommentToEdit', {{ $comment->id }})" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Editar comentario</a></li>
+                            @endcan
                             <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Marcar como inapropiado</a></li>
                             <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Eliminar comentario</a></li>
                         </ul>
