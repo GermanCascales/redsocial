@@ -5,6 +5,9 @@
                 commentId = newComment;
             });
             Livewire.hook('message.processed', (message, component) => {
+                if (['gotoPage', 'previousPage', 'nextPage'].includes(message.updateQueue[0].method)) {
+                    document.querySelector('.comment-container:first-child').scrollIntoView({ behavior: 'smooth', block: 'center' })
+                }
                 if (message.updateQueue[0].payload.event === 'commentCreated' && message.component.fingerprint.name === 'post-comments') {
                     const newComment = document.querySelector('#comment-' + commentId);
                     newComment.scrollIntoView({ behavior: 'smooth', block: 'center' });

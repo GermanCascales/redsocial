@@ -9,5 +9,7 @@
                 <livewire:post-comment :key="$comment->id" :comment="$comment"/> 
             @endforeach
         </div>
+
+        <div class="md:pl-20 my-8">{{ $comments->links() }}</div>
     @endif
 </div>

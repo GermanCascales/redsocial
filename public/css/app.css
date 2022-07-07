@@ -1686,6 +1686,10 @@ select {
   padding-left: 1.25rem;
   padding-right: 1.25rem;
 }
+.px-8 {
+  padding-left: 2rem;
+  padding-right: 2rem;
+}
 .pt-6 {
   padding-top: 1.5rem;
 }
@@ -1727,6 +1731,12 @@ select {
 }
 .pt-8 {
   padding-top: 2rem;
+}
+.pl-16 {
+  padding-left: 4rem;
+}
+.pl-20 {
+  padding-left: 5rem;
 }
 .text-left {
   text-align: left;
@@ -2643,6 +2653,10 @@ select {
   .md\:px-0 {
     padding-left: 0px;
     padding-right: 0px;
+  }
+
+  .md\:pl-20 {
+    padding-left: 5rem;
   }
 }
 @media (min-width: 1024px) {
