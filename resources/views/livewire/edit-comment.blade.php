@@ -3,7 +3,7 @@
     x-init="Livewire.on('commentUpdated', () => {
                 isOpen = false
             });
-            Livewire.on('openCommentModal', () => {
+            Livewire.on('editCommentModal', () => {
                 isOpen = true
                 $nextTick(() => $refs.messageInput.focus())
             })"

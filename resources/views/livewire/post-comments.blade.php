@@ -11,5 +11,11 @@
         </div>
 
         <div class="md:pl-20 my-8">{{ $comments->links() }}</div>
+
+        @push('modals')
+            <livewire:edit-comment/>
+
+            <livewire:delete-comment/>
+        @endpush
     @endif
 </div>

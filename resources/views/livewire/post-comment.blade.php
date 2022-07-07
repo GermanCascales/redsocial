@@ -17,7 +17,7 @@
                     <div>{{ $comment->created_at->diffForHumans() }}</div>
                 </div>
 
-                <div x-data="{ isCommentOptionsOpen: false }" class="flex items-center mt-4 md:mt-0">
+                <div x-data="{ isOptionsOpen: false }" class="flex items-center mt-4 md:mt-0">
                     <div class="bg-gray-100 text-center rounded-xl h-10 px-4 py-3 md:py-2 pr-8">
                         <div class="text-sm font-bold leading-none">12</div>
                         <div class="hidden md:block text-xxs font-semibold leading-none text-gray-400">me gusta</div>
@@ -28,22 +28,24 @@
                         </svg>
                     </button>
                     <div class="relative">
-                        <button @click="isCommentOptionsOpen = !isCommentOptionsOpen" class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 transition duration-150 ease-in py-2 px-3 ml-8">
+                        <button @click="isOptionsOpen = !isOptionsOpen" class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 transition duration-150 ease-in py-2 px-3 ml-8">
                             <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
                         </button>
                         <ul
                             class="absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl z-10 py-3 md:ml-8 top-8 md:top-6 right-0 md:left-0"
                             x-cloak
-                            x-show="isCommentOptionsOpen"
+                            x-show="isOptionsOpen"
                             x-transition.origin.top.left
-                            @click.away="isCommentOptionsOpen = false"
-                            @keydown.escape.window="isCommentOptionsOpen = false"
+                            @click.away="isOptionsOpen = false"
+                            @keydown.escape.window="isOptionsOpen = false"
                         >
                             @can('update', $comment)
                                 <li><a href="#" @click.prevent="isOptionsOpen = false; Livewire.emit('setCommentToEdit', {{ $comment->id }})" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Editar comentario</a></li>
                             @endcan
                             <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Marcar como inapropiado</a></li>
-                            <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Eliminar comentario</a></li>
+                            @can('delete', $comment)
+                                <li><a href="#" @click.prevent="isOptionsOpen = false; Livewire.emit('setCommentToDelete', {{ $comment->id }})" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Eliminar comentario</a></li>
+                            @endcan
                         </ul>
                     </div>
                 </div>

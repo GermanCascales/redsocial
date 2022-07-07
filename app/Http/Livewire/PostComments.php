@@ -11,8 +11,14 @@ class PostComments extends Component {
 
     public Post $post;
 
-    protected $listeners = ['commentCreated' => '$refresh'];
+    protected $listeners = ['commentCreated' => '$refresh',
+                            'commentDeleted'];
 
+    public function commentDeleted() {
+        $this->post->refresh();
+        $this->gotoPage(1);
+    }
+    
     public function render() {
         return view('livewire.post-comments', ['comments' => $this->post->comments()->with(['user'])->orderBy('updated_at', 'desc')->paginate(5)]);
     }

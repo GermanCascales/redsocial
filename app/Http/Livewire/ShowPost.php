@@ -10,7 +10,8 @@ class ShowPost extends Component {
     public $post, $likedPost, $likes, $comment;
 
     protected $listeners = ['postUpdated' => '$refresh',
-                            'commentCreated' => '$refresh'];
+                            'commentCreated' => '$refresh',
+                            'commentDeleted' => '$refresh'];
     protected $rules = ['comment' => 'required|min:3'];
 
     public function mount($post) {

@@ -20,7 +20,7 @@ class EditComment extends Component {
         $this->message = $this->comment->message;
 
         $this->resetValidation(); // quita los errores de validación que pudieran haber quedado
-        $this->emit('openCommentModal');
+        $this->emit('editCommentModal');
     }
 
     public function updateComment() {
