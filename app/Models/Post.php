@@ -38,6 +38,10 @@ class Post extends Model
         return $this->hasMany(Comment::class);
     }
 
+    public function reports() {
+        return $this->morphMany(Report::class, 'reportable');
+    }
+
     public function user_liked(User $user) {
         return Like::where('user_id', $user->id)->where('post_id', $this->id)->exists();
     }

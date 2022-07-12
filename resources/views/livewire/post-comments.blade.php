@@ -16,6 +16,8 @@
             <livewire:edit-comment/>
 
             <livewire:delete-comment/>
+
+            <livewire:report-comment/>
         @endpush
     @endif
 </div>

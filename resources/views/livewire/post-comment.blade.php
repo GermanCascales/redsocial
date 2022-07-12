@@ -42,7 +42,9 @@
                             @can('update', $comment)
                                 <li><a href="#" @click.prevent="isOptionsOpen = false; Livewire.emit('setCommentToEdit', {{ $comment->id }})" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Editar comentario</a></li>
                             @endcan
-                            <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Marcar como inapropiado</a></li>
+                            @can('report', $comment)
+                                <li><a href="#" @click.prevent="isOptionsOpen = false; Livewire.emit('setCommentToReport', {{ $comment->id }})" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Marcar como inapropiado</a></li>
+                            @endcan
                             @can('delete', $comment)
                                 <li><a href="#" @click.prevent="isOptionsOpen = false; Livewire.emit('setCommentToDelete', {{ $comment->id }})" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Eliminar comentario</a></li>
                             @endcan

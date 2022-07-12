@@ -21,6 +21,8 @@
             @can('delete', $post)
                 <livewire:delete-post :post="$post"/>
             @endcan
+
+            <livewire:report-post :post="$post"/>
         @endpush
 
         <livewire:post-comments :post="$post"/>

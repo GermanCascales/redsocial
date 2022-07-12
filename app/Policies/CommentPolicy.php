@@ -89,4 +89,15 @@ class CommentPolicy
     {
         //
     }
+
+    /**
+     * Determine whether the user can report the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Comment  $comment
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function report(User $user, Comment $comment) {
+        return $user->id != $comment->user_id;
+    }
 }

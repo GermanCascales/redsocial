@@ -91,4 +91,15 @@ class PostPolicy
     {
         //
     }
+
+    /**
+     * Determine whether the user can report the model.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Comment  $comment
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function report(User $user, Post $post) {
+        return $user->id != $post->user_id;
+    }
 }

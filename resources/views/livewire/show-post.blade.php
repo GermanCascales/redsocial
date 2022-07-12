@@ -56,7 +56,9 @@
                                 @can('update', $post)
                                     <li><a href="#" @click.prevent="isOptionsOpen = false; $dispatch('custom-show-edit')" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Editar post</a></li>
                                 @endcan
-                                    <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Marcar como inapropiado</a></li>
+                                @can('report', $post)
+                                    <li><a href="#" @click.prevent="isOptionsOpen = false; $dispatch('custom-show-report')" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Marcar como inapropiado</a></li>
+                                @endcan
                                 @can('delete', $post)
                                     <li><a href="#" @click.prevent="isOptionsOpen = false; $dispatch('custom-show-delete')" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Eliminar post</a></li>
                                 @endcan
