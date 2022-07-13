@@ -1,4 +1,4 @@
-<div id="comment-{{ $comment->id }}" class="comment-container relative bg-white rounded-xl @if($comment->user_id === auth()->id()) border border-blue @endif flex mt-4 transition duration-500 ease-in">
+<div id="comment-{{ $comment->id }}" class="comment-container relative bg-white dark:bg-slate-800 rounded-xl @if($comment->user_id === auth()->id()) border border-blue @endif flex mt-4 transition duration-500 ease-in">
     <div class="flex flex-col md:flex-row flex-1 px-5 py-6">
         <div class="flex-none mx-2 md:mx-0">
             <a href="#">
@@ -6,13 +6,13 @@
             </a>
         </div>
         <div class="w-full flex flex-col justify-between mx-2 md:mx-4">
-            <div class="text-gray-600 mt-1">
+            <div class="text-gray-600 dark:text-slate-400 mt-1">
                 {{ $comment->message }}
             </div>
 
             <div class="flex md:items-center justify-between mt-6">
                 <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
-                    <div class="font-bold @if($comment->user_id === auth()->id()) text-blue @else text-gray-900 @endif">{{ $comment->user->name }}</div>
+                    <div class="font-bold @if($comment->user_id === auth()->id()) text-blue @else text-gray-900 dark:text-white @endif">{{ $comment->user->name }}</div>
                     <div>&bull;</div>
                     <div>{{ $comment->created_at->diffForHumans() }}</div>
                 </div>
@@ -32,7 +32,7 @@
                             <svg fill="currentColor" width="24" height="6"><path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)"></svg>
                         </button>
                         <ul
-                            class="absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl z-10 py-3 md:ml-8 top-8 md:top-6 right-0 md:left-0"
+                            class="absolute w-44 text-left font-semibold bg-white dark:bg-slate-800 shadow-dialog rounded-xl z-10 py-3 md:ml-8 top-8 md:top-6 right-0 md:left-0"
                             x-cloak
                             x-show="isOptionsOpen"
                             x-transition.origin.top.left

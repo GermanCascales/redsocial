@@ -19,7 +19,7 @@
                     }, 3500);
                 }
             });">
-    <div class="post-container bg-white rounded-xl flex mt-4">
+    <div class="post-container bg-white dark:bg-slate-800 rounded-xl flex mt-4">
         <div class="flex flex-col md:flex-row flex-1 px-5 py-6">
             <div class="flex-none mx-2 md:mx-0">
                 <a href="#">
@@ -30,19 +30,19 @@
                 <h4 class="text-xl font-semibold mt-2 md:mt-0">
                     {{ $post->title }}
                 </h4>
-                <div class="text-gray-600 mt-3">
+                <div class="text-gray-600 dark:text-slate-400 mt-3">
                     {!! $post->description !!}
                 </div>
 
                 <div class="flex flex-col md:flex-row md:items-center justify-between mt-6">
                     <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
-                        <div class="font-bold text-gray-900">{{ $post->user->name }}</div>
+                        <div class="font-bold text-gray-900 dark:text-white">{{ $post->user->name }}</div>
                         <div>&bull;</div>
                         <div>{{ $post->created_at->diffForHumans() }}</div>
                         <div>&bull;</div>
                         <div>{{ $post->category->name }}</div>
                         <div>&bull;</div>
-                        <div class="text-gray-900">{{ $post->comments->count() }} {{ Str::plural('comentario', $post->comments->count()) }}</div>
+                        <div class="text-gray-900 dark:text-white">{{ $post->comments->count() }} {{ Str::plural('comentario', $post->comments->count()) }}</div>
                     </div>
                     <div x-data="{ isOptionsOpen: false }" class="flex items-center space-x-2 mt-4 md:mt-0">
                         <div class="{{ $post->type->style ? $post->type->style : 'bg-gray-200' }} text-xxs font-bold uppercase leading-none rounded-full text-center h-7 py-2 px-4">{{ $post->type->name }}</div>
@@ -81,11 +81,11 @@
         </div>
 
         <div class="flex items-center space-x-3">
-            <div class="bg-white font-semibold text-center rounded-xl px-3 py-2">
-                <div class="text-xl leading-snug @if($likedPost) text-blue @endif">{{ $likes }}</div>
+            <div class="bg-white dark:bg-slate-800 font-semibold text-center rounded-xl px-3 py-2">
+                <div class="text-xl leading-snug @if($likedPost) text-blue dark:text-blue-400 @endif">{{ $likes }}</div>
                 <div class="text-gray-400 text-xs leading-none">me gusta</div>
             </div>
-            <button type="button" wire:click="like_button" class="text-xs @if($likedPost) text-white bg-blue border-blue hover:bg-blue-hover @else bg-gray-200 border-gray-200 hover:border-gray-400 @endif font-semibold uppercase rounded-xl border transition duration-150 ease-in p-3">
+            <button type="button" wire:click="like_button" class="text-xs @if($likedPost) text-white bg-blue border-blue hover:bg-blue-hover @else bg-gray-200 dark:bg-slate-600 border-gray-200 dark:border-slate-600 hover:border-gray-400 dark:hover:border-slate-800 @endif font-semibold uppercase rounded-xl border transition duration-150 ease-in p-3">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
                 </svg>
@@ -93,18 +93,18 @@
         </div>
     </div>
 
-    <div x-cloak x-show="isCommentsOpen" x-transition.origin.top class="font-semibold text-sm bg-white shadow-sm rounded-xl mt-6">
+    <div x-cloak x-show="isCommentsOpen" x-transition.origin.top class="font-semibold text-sm bg-white dark:bg-slate-800 shadow-sm rounded-xl mt-6">
         <form wire:submit.prevent="create_comment" action="#" class="space-y-4 px-4 py-6">
             <div>
-                <textarea x-ref="comment" wire:model.defer="comment" name="post_comment" id="post_comment" cols="30" rows="4" class="w-full text-sm bg-gray-100 rounded-xl placeholder-gray-900 @error('comment') border-red @else border-none @enderror px-4 py-2" placeholder="Escribe un comentario..."></textarea>
+                <textarea x-ref="comment" wire:model.defer="comment" name="post_comment" id="post_comment" cols="30" rows="4" class="w-full text-sm bg-gray-100 dark:bg-slate-600 rounded-xl placeholder-gray-900 dark:placeholder-slate-100 @error('comment') border-red @else border-none @enderror px-4 py-2" placeholder="Escribe un comentario..."></textarea>
                 @error('comment')
                     <p class="text-red text-xs my-1 px-1">{{ $message }} </p>
                 @enderror
             </div>
 
             <div class="flex flex-col md:flex-row items-center md:space-x-3">
-                <button type="button" class="flex items-center justify-center w-full md:w-1/2 h-11 text-sm bg-gray-200 font-semibold rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in px-6 py-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-600 w-4 transform -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <button type="button" class="flex items-center justify-center w-full md:w-1/2 h-11 text-sm bg-gray-200 dark:bg-slate-700 font-semibold rounded-xl border border-gray-200 hover:border-gray-400 transition duration-150 ease-in px-6 py-3">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="text-gray-600 dark:text-white w-4 transform -rotate-45" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13" />
                     </svg>
                     <span class="ml-1">Adjuntar archivo</span>

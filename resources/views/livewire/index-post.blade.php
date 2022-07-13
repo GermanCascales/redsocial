@@ -1,12 +1,12 @@
-<div class="post-container hover:shadow-card transition duration-150 ease-in bg-white rounded-xl flex pr-5 md:p-0">
-    <div class="hidden md:block border-r border-gray-100 px-5 py-8">
+<div class="post-container hover:shadow-card transition duration-150 ease-in bg-white dark:bg-slate-800 rounded-xl flex pr-5 md:p-0">
+    <div class="hidden md:block border-r border-gray-100 dark:border-zinc-700 px-5 py-8">
         <div class="text-center">
-            <div class="font-semibold text-2xl @if($likedPost) text-blue @endif">{{ $likes }}</div>
-            <div class="text-gray-500">me gusta</div>
+            <div class="font-semibold text-2xl dark:text-white @if($likedPost) text-blue @endif">{{ $likes }}</div>
+            <div class="text-gray-500 dark:text-slate-400">me gusta</div>
         </div>
 
         <div class="mt-8">
-            <button wire:click="like_button" class="border @if($likedPost) text-white bg-blue border-blue hover:bg-blue-hover @else bg-gray-200 border-gray-200 hover:border-gray-400 @endif font-bold text-xxs uppercase rounded-xl transition duration-150 ease-in px-4 py-3">
+            <button wire:click="like_button" class="border @if($likedPost) text-white bg-blue border-blue hover:bg-blue-hover @else bg-gray-200 dark:bg-slate-600 border-gray-200 dark:border-slate-600 hover:border-gray-400 dark:hover:border-slate-800 @endif font-bold text-xxs uppercase rounded-xl transition duration-150 ease-in px-4 py-3">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M14 10h4.764a2 2 0 011.789 2.894l-3.5 7A2 2 0 0115.263 21h-4.017c-.163 0-.326-.02-.485-.06L7 20m7-10V5a2 2 0 00-2-2h-.095c-.5 0-.905.405-.905.905 0 .714-.211 1.412-.608 2.006L7 11v9m7-10h-2M7 20H5a2 2 0 01-2-2v-6a2 2 0 012-2h2.5" />
                 </svg>
@@ -20,10 +20,10 @@
             </a>
         </div>
         <div class="w-full flex flex-col justify-between mx-2 md:mx-4">
-            <h4 class="text-xl font-semibold mt-2 md:mt-0">
+            <h4 class="text-xl dark:text-white font-semibold mt-2 md:mt-0">
                 <a href="{{ route('posts.show', $post) }}" class="hover:underline">{{ $post->title }}</a>
             </h4>
-            <div class="text-gray-600 mt-3 line-clamp-3">
+            <div class="text-gray-600 dark:text-slate-400 mt-3 line-clamp-3">
                 {!! trim(strip_tags(htmlspecialchars_decode($post->description))) !!}
             </div>
 
@@ -33,7 +33,7 @@
                     <div>&bull;</div>
                     <div>{{ $post->category->name }}</div>
                     <div>&bull;</div>
-                    <div class="text-gray-900">{{ $comments }} {{ Str::plural('comentario', $comments) }}</div>
+                    <div class="text-gray-900 dark:text-white">{{ $comments }} {{ Str::plural('comentario', $comments) }}</div>
                 </div>
                 <div x-data="{ isOpen: false }" class="flex items-center space-x-2 mt-4 md:mt-0">
                     <div class="flex items-center w-2/3 md:hidden mr-5 md:mt-0">

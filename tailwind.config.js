@@ -30,6 +30,7 @@ module.exports = {
                 'amber-500' : '#f59e0b',
                 'amber-600' : '#d97706',
                 'blue': '#328af1',
+                'blue-400' : '#60a5fa',
                 'blue-hover': '#2879bd',
                 'yellow' : '#ffc73c',
                 'yellow-hover' : '#f9b100',

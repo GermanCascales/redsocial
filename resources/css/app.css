@@ -9,7 +9,7 @@
     position: absolute;
     display: block;
     top: 0;
-    left: -40px;
+    left: -39px;
     content: "";
     width: 3px;
     height: 100%;
@@ -42,4 +42,10 @@
 
 .ck-editor__editable_inline {
     min-height: 150px;
+}
+
+@media (prefers-color-scheme: dark) {
+    .comments-container::before, .comment-container::before { background: #374151; }
+
+    .comment-container:last-child::after { background: #0f172a; }
 }
