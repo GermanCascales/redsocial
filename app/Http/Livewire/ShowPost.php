@@ -3,6 +3,7 @@
 namespace App\Http\Livewire;
 
 use App\Models\Comment;
+use App\Notifications\CommentPosted;
 use Livewire\Component;
 
 class ShowPost extends Component {
@@ -45,6 +46,8 @@ class ShowPost extends Component {
         ]);
 
         $this->reset('comment');
+
+        $this->post->user->notify(new CommentPosted($newComment));
 
         $this->emit('commentCreated', $newComment->id);
         $this->emit('alertOkVisible', 'El comentario fue publicado correctamente.');

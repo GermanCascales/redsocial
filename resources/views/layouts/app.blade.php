@@ -24,6 +24,8 @@
         <div class="min-h-screen">
             @livewire('navigation-menu')
 
+            @livewire('notification-bar')
+
             <!-- Page Heading -->
             @if (isset($header))
                 <header class="bg-white shadow">
