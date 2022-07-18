@@ -20,7 +20,7 @@ class NotificationCount extends Component {
     public function render() {
         return <<<'blade'
             @if ($count > 0)
-                <div class="absolute rounded-full bg-red text-white text-xs w-5 h-5 flex justify-center items-center border-2 border-gray-background -top-2 -right-2">
+                <div wire:poll.10s="setCount" class="absolute rounded-full bg-red text-white text-xs w-5 h-5 flex justify-center items-center border-2 border-gray-background -top-2 -right-2">
                     {{ $count > 99 ? '∞' : $count }}
                 </div>
             @else

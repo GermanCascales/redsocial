@@ -47,7 +47,9 @@ class ShowPost extends Component {
 
         $this->reset('comment');
 
-        $this->post->user->notify(new CommentPosted($newComment));
+        if ($newComment->user_id != $this->post->user_id) {
+            $this->post->user->notify(new CommentPosted($newComment));
+        }
 
         $this->emit('commentCreated', $newComment->id);
         $this->emit('alertOkVisible', 'El comentario fue publicado correctamente.');
