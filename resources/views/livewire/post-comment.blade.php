@@ -7,7 +7,7 @@
         </div>
         <div class="w-full flex flex-col justify-between mx-2 md:mx-4">
             <div class="text-gray-600 dark:text-slate-400 mt-1">
-                {{ $comment->message }}
+                {!! nl2br(e($comment->message)) !!}
             </div>
 
             <div class="flex md:items-center justify-between mt-6">
