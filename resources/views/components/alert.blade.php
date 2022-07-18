@@ -1,6 +1,7 @@
 @props([
     'fromRedirect' => false,
     'alertMessage' => '',
+    'type' => 'ok'
 ])
 
 <div
@@ -32,10 +33,17 @@
     class="flex justify-between max-w-sm w-full fixed top-0 right-0 bg-white rounded-xl shadow-lg border z-10 px-5 py-4 mx-3 md:mx-6 my-4 md:my-16">
 
     <div class="flex items-center">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
-        </svg>
-        <div class="font-semibold text-gray-500 ml-2" x-text="alertMessage"></div>
+        @if ($type === 'error')
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-red" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div class="font-semibold text-red ml-2" x-text="alertMessage"></div>
+        @else
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-green" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                <path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <div class="font-semibold text-gray-500 ml-2" x-text="alertMessage"></div>
+        @endif
     </div>
     <button @click="isVisible = false" class="text-gray-400 hover:text-gray-500">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">

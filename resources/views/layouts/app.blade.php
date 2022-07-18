@@ -35,8 +35,10 @@
                 </header>
             @endif
 
-            @if (session('ok_alert'))
-                <x-alert-ok :from-redirect="true" alert-message="{{ session('ok_alert') }}" />
+            @if (session('error_alert'))
+                <x-alert :from-redirect="true" alert-message="{{ session('error_alert') }}" type="error" />
+            @elseif (session('ok_alert'))
+                <x-alert :from-redirect="true" alert-message="{{ session('ok_alert') }}"/>
             @endif
 
             <!-- Page Content -->

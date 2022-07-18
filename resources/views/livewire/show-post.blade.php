@@ -18,7 +18,18 @@
                         newComment.classList.replace('border-green', 'border-blue');
                     }, 3500);
                 }
-            });">
+            });
+            
+            @if (session('scrollComment'))
+                const commentToScroll = document.querySelector('#comment-{{ session('scrollComment') }}');
+                commentToScroll.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                commentToScroll.classList.replace('bg-white', 'bg-green-50');
+                commentToScroll.classList.replace('border-blue', 'border-green');
+                setTimeout(() => {
+                    commentToScroll.classList.replace('bg-green-50', 'bg-white')
+                    commentToScroll.classList.replace('border-green', 'border-blue');
+                }, 3500);
+            @endif">
     <div class="post-container bg-white dark:bg-slate-800 rounded-xl flex mt-4">
         <div class="flex flex-col md:flex-row flex-1 px-5 py-6">
             <div class="flex-none mx-2 md:mx-0">

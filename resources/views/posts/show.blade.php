@@ -9,7 +9,7 @@
             </a>
         </div>
 
-        <x-alert-ok />
+        <x-alert/>
 
         <livewire:show-post :post="$post"/>
 

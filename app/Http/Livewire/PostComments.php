@@ -20,6 +20,6 @@ class PostComments extends Component {
     }
     
     public function render() {
-        return view('livewire.post-comments', ['comments' => $this->post->comments()->with(['user'])->orderBy('updated_at', 'desc')->paginate(5)]);
+        return view('livewire.post-comments', ['comments' => $this->post->comments()->with(['user'])->orderBy('updated_at', 'desc')->paginate()]);
     }
 }
