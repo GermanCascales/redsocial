@@ -1,4 +1,12 @@
-<div x-cloak x-data="{ creatingPost: false }" :class="creatingPost ? 'md:flex-col' : 'md:flex-row'" class="flex flex-col">
+<div x-cloak
+     x-data="{ creatingPost: false }"
+     x-init="Livewire.hook('message.processed', (message, component) => {
+                if (['gotoPage', 'previousPage', 'nextPage'].includes(message.updateQueue[0].method)) {
+                    document.querySelector('.post-container:first-child').scrollIntoView({ behavior: 'smooth', block: 'center' })
+                }
+            });"
+     :class="creatingPost ? 'md:flex-col' : 'md:flex-row'"
+     class="flex flex-col">
 <div :class="creatingPost ? 'w-full md:mb-8' : 'w-70'" class="mx-auto md:mx-0 md:mr-5 transition-all transition-slowest ease">
     <div class="bg-white dark:bg-slate-800 md:sticky md:top-8 border border-blue rounded-xl md:mt-16">
 

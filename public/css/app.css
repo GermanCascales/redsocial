@@ -1126,14 +1126,8 @@ select {
 .block {
   display: block;
 }
-.\!inline-block {
-  display: inline-block !important;
-}
 .inline {
   display: inline;
-}
-.\!inline {
-  display: inline !important;
 }
 .flex {
   display: flex;
