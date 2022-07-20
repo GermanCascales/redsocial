@@ -4,12 +4,17 @@ namespace App\Http\Livewire;
 
 use App\Models\Post;
 use Livewire\Component;
+use Livewire\WithFileUploads;
 use Symfony\Component\HttpFoundation\Response;
 
 class CreatePost extends Component {
+    use WithFileUploads;
+
     public $title, $description, $categories, $post_types;
     public $category_id = 1;
     public $post_type_id = 1;
+
+    public $uploads = [];
 
     protected $rules = [
         'title' => 'required|min:3',
@@ -22,13 +27,21 @@ class CreatePost extends Component {
         if (auth()->check()) {
             $this->validate();
 
-            Post::create([
+            $post = Post::create([
                 'title' => $this->title,
                 'description' => $this->description,
                 'user_id' => auth()->id(),
                 'category_id' => $this->category_id,
                 'post_type_id' => $this->post_type_id
             ]);
+
+            foreach ($this->uploads as $upload) {
+                $path = $upload->store('uploads');
+                $post->uploads()->create([
+                    'user_id' => auth()->id(),
+                    'file' => $path
+                ]);
+            }
 
             session()->flash('ok_alert', 'El post fue publicado correctamente.');
 

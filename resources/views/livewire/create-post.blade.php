@@ -21,6 +21,20 @@
     </div>
     <x-ck-editor name="description"/>
     <x-jet-input-error for="description" class="text-red text-xs my-1 px-1" />
+    <div wire:ignore x-data x-init="FilePond.create($refs.input, {
+        allowMultiple: true,
+        credits: false,
+        server: {
+            process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
+                @this.upload('uploads', file, load, error, progress)
+            },
+            revert: (filename, load) => {
+                @this.removeUpload('uploads', filename, load)
+            },
+        },
+    });">
+        <input type="file" x-ref="input" name="uploads" multiple>
+    </div>
 
     <div class="flex items-center justify-between space-x-3">
         <button type="button" class="flex items-center justify-center w-1/2 h-11 text-xs bg-gray-200 dark:bg-slate-700 font-semibold rounded-xl border border-gray-200 dark:border-slate-700 hover:border-gray-400 dark:hover:border-slate-900 transition duration-150 ease-in px-6 py-3">

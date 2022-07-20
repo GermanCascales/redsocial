@@ -7,6 +7,7 @@ use App\Models\Post;
 use App\Models\PostType;
 use Livewire\Component;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
+use Illuminate\Support\Facades\Storage;
 
 class EditPost extends Component {
     use AuthorizesRequests;
@@ -43,6 +44,45 @@ class EditPost extends Component {
 
         $this->emit('postUpdated');
         $this->emit('alertOkVisible', 'El post fue editado correctamente.');
+    }
+
+    public function uploadedFiles() {
+        // $filesParams = "";
+        // foreach ($this->post->uploads()->get() as $upload) {
+        //     $filesParams = $filesParams . "{
+        //         // the server file reference
+        //         source: '12345',
+
+        //         // set type to local to indicate an already uploaded file
+        //         options: {
+        //             type: 'local',
+
+        //             // mock file information
+        //             file: {
+        //                 name: 'my-file.png',
+        //                 size: 3001025,
+        //                 type: 'image/png',
+        //             },
+        //         },
+        //     },";
+        // }
+
+        $filesParams = collect();
+        foreach ($this->post->uploads()->get() as $upload) {
+            $filesParams = $filesParams->concat([[
+                'source' => $upload->id,
+                'options' => [
+                    'type' => 'local',
+                    'file' => [
+                        'name' => basename($upload->file),
+                        'size' => Storage::size($upload->file),
+                        'type' => Storage::mimeType($upload->file),
+                    ]
+                ]
+            ]]);
+        }
+        
+        return $filesParams->toJson();
     }
 
     public function render() {

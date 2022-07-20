@@ -42,6 +42,10 @@ class Post extends Model
         return $this->morphMany(Report::class, 'reportable');
     }
 
+    public function uploads() {
+        return $this->morphMany(Upload::class, 'uploadable');
+    }
+
     public function user_liked(User $user) {
         return Like::where('user_id', $user->id)->where('post_id', $this->id)->exists();
     }
