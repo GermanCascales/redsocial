@@ -23,6 +23,7 @@
         "tailwindcss": "^3.0.24"
     },
     "dependencies": {
-        "filepond": "^4.30.4"
+        "filepond": "^4.30.4",
+        "filepond-plugin-image-preview": "^4.6.11"
     }
 }

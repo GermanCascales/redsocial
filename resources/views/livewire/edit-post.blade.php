@@ -55,6 +55,10 @@
                         process: (fieldName, file, metadata, load, error, progress, abort, transfer, options) => {
                             @this.upload('uploads', file, load, error, progress)
                         },
+                        remove: (source, load, error) => {
+                            @this.setUploadToDelete(source)
+                            load()
+                        },
                         revert: (filename, load) => {
                             @this.removeUpload('uploads', filename, load)
                         },

@@ -21,7 +21,10 @@
     </div>
     <x-ck-editor name="description"/>
     <x-jet-input-error for="description" class="text-red text-xs my-1 px-1" />
-    <div wire:ignore x-data x-init="FilePond.create($refs.input, {
+<div wire:ignore x-data x-init="
+    FilePond.registerPlugin(FilePondPluginImagePreview);
+    FilePond.create($refs.input, {
+        allowImagePreview: true,
         allowMultiple: true,
         credits: false,
         server: {

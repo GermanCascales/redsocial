@@ -5,16 +5,22 @@ namespace App\Http\Livewire;
 use App\Models\Category;
 use App\Models\Post;
 use App\Models\PostType;
+use App\Models\Upload;
 use Livewire\Component;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Illuminate\Support\Facades\Storage;
+use Livewire\WithFileUploads;
 
 class EditPost extends Component {
     use AuthorizesRequests;
+    use WithFileUploads;
 
     public Post $post;
 
     public $title, $description, $category_id, $post_type_id;
+
+    public $uploads = [];
+    public $uploadsToDelete;
 
     protected $rules = [
         'title' => 'required|min:3',
@@ -28,6 +34,8 @@ class EditPost extends Component {
         $this->description = $post->description;
         $this->category_id = $post->category_id;
         $this->post_type_id = $post->post_type_id;
+        
+        $this->uploadsToDelete = collect();
     }
 
     public function updatePost() {
@@ -41,6 +49,16 @@ class EditPost extends Component {
             'category_id' => $this->category_id,
             'post_type_id' => $this->post_type_id
         ]);
+        
+        Upload::destroy($this->uploadsToDelete);
+
+        foreach ($this->uploads as $upload) {
+            $path = $upload->store('uploads');
+            $this->post->uploads()->create([
+                'user_id' => auth()->id(),
+                'file' => $path
+            ]);
+        }
 
         $this->emit('postUpdated');
         $this->emit('alertOkVisible', 'El post fue editado correctamente.');
@@ -83,6 +101,10 @@ class EditPost extends Component {
         }
         
         return $filesParams->toJson();
+    }
+
+    public function setUploadToDelete($upload) {
+        $this->uploadsToDelete = $this->uploadsToDelete->concat([$upload]);
     }
 
     public function render() {
