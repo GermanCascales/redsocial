@@ -36,10 +36,11 @@ class CreatePost extends Component {
             ]);
 
             foreach ($this->uploads as $upload) {
-                $path = $upload->store('uploads');
+                $path = $upload->store('public/uploads');
                 $post->uploads()->create([
                     'user_id' => auth()->id(),
-                    'file' => $path
+                    'file' => $path,
+                    'name' => $upload->getClientOriginalName()
                 ]);
             }
 

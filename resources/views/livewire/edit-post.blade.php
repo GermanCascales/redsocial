@@ -45,9 +45,12 @@
                 </div>
                 <x-ck-editor name="description"/>
                 <x-jet-input-error for="description" class="text-red text-xs my-1 px-1" />
-                <div wire:ignore x-data x-init="FilePond.create($refs.input, {
+                <div wire:ignore x-data x-init="
+                FilePond.registerPlugin(FilePondPluginImagePreview, FilePondPluginFilePoster);
+                FilePond.create($refs.input, {
                     allowMultiple: true,
                     credits: false,
+                    filePosterFilterItem: item => /jpg$|png$|gif$/.test(item.filename),
                     files: 
                         {{$this->uploadedFiles()}}
                     ,

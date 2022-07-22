@@ -19,6 +19,7 @@ return new class extends Migration
             $table->string('uploadable_type');
             $table->foreignId('user_id')->constrained();
             $table->string('file');
+            $table->string('name');
             $table->timestamps();
         });
     }

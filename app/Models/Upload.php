@@ -13,7 +13,7 @@ class Upload extends Model {
      *
      * @var array
      */
-    protected $fillable = ['user_id', 'file'];
+    protected $fillable = ['user_id', 'file', 'name'];
 
     public function uploadable() {
         return $this->morphTo();

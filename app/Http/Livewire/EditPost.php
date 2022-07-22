@@ -49,14 +49,20 @@ class EditPost extends Component {
             'category_id' => $this->category_id,
             'post_type_id' => $this->post_type_id
         ]);
-        
-        Upload::destroy($this->uploadsToDelete);
 
+        foreach ($this->uploadsToDelete as $uploadId) {
+            $uploadToDelete = Upload::findOrFail($uploadId);
+            $this->authorize('delete', $uploadToDelete);
+            Storage::delete($uploadToDelete->file);
+            $uploadToDelete->delete();
+        }
+        
         foreach ($this->uploads as $upload) {
-            $path = $upload->store('uploads');
+            $path = $upload->store('public/uploads');
             $this->post->uploads()->create([
                 'user_id' => auth()->id(),
-                'file' => $path
+                'file' => $path,
+                'name' => $upload->getClientOriginalName()
             ]);
         }
 
@@ -92,9 +98,12 @@ class EditPost extends Component {
                 'options' => [
                     'type' => 'local',
                     'file' => [
-                        'name' => basename($upload->file),
+                        'name' => $upload->name,
                         'size' => Storage::size($upload->file),
                         'type' => Storage::mimeType($upload->file),
+                    ],
+                    'metadata' => [
+                        'poster' => Storage::url($upload->file)
                     ]
                 ]
             ]]);

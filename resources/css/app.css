@@ -3,6 +3,7 @@
 @import 'tailwindcss/utilities';
 @import 'filepond/dist/filepond.min.css';
 @import 'filepond-plugin-image-preview/dist/filepond-plugin-image-preview.css';
+@import 'filepond-plugin-file-poster/dist/filepond-plugin-file-poster.css';
 
 [x-cloak] { display: none !important; }
 
