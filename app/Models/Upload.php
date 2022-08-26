@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Facades\Storage;
 
 class Upload extends Model {
     use HasFactory;
@@ -17,5 +18,9 @@ class Upload extends Model {
 
     public function uploadable() {
         return $this->morphTo();
+    }
+
+    public function mimeType() {
+        return Storage::mimeType($this->file);
     }
 }
