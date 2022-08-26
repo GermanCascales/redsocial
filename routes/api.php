@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\PostController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -17,3 +18,9 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::middleware('auth:sanctum')->get('/posts', function (Request $request) {
+    return $request->user()->posts()->select(['id', 'title', 'description'])->doesntHave('signature')->get();
+});
+
+Route::middleware(['auth:sanctum'])->post('/posts/{post}/sign', [PostController::class, 'sign']);

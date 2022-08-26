@@ -1,10 +1,22 @@
-<div class="post-container hover:shadow-card transition duration-150 ease-in bg-white dark:bg-slate-800 rounded-xl flex pr-5 md:p-0">
+<div class="post-container relative border @if ($post->signature) border-green @endif hover:shadow-card transition duration-150 ease-in bg-white dark:bg-slate-800 rounded-xl flex pr-5 md:p-0">
+    @if ($post->signature)
+    <div class="absolute rounded-full bg-green text-white text-xs w-5 h-5 flex justify-center items-center -top-2 -right-2" title="Firmado">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7" />
+        </svg>
+    </div>
+    @else
+    <div class="absolute rounded-full bg-yellow text-white text-xs w-5 h-5 flex justify-center items-center -top-2 -right-2" title="Sin firmar">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M 12 6 L 12 13 M 12 17 L 12.01 17.5" />
+        </svg>
+    </div>
+    @endif
     <div class="hidden md:block border-r border-gray-100 dark:border-zinc-700 px-5 py-8">
         <div class="text-center">
             <div class="font-semibold text-2xl dark:text-white @if($likedPost) text-blue @endif">{{ $likes }}</div>
             <div class="text-gray-500 dark:text-slate-400">me gusta</div>
         </div>
-
         <div class="mt-8">
             <button wire:click="like_button" class="border @if($likedPost) text-white bg-blue border-blue hover:bg-blue-hover @else bg-gray-200 dark:bg-slate-600 border-gray-200 dark:border-slate-600 hover:border-gray-400 dark:hover:border-slate-800 @endif font-bold text-xxs uppercase rounded-xl transition duration-150 ease-in px-4 py-3">
                 <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">

@@ -46,6 +46,10 @@ class Post extends Model
         return $this->morphMany(Upload::class, 'uploadable');
     }
 
+    public function signature() {
+        return $this->hasOne(Signature::class);
+    }
+
     public function user_liked(User $user) {
         return Like::where('user_id', $user->id)->where('post_id', $this->id)->exists();
     }
