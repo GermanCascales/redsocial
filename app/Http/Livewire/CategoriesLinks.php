@@ -2,19 +2,34 @@
 
 namespace App\Http\Livewire;
 
+use App\Models\Category;
+use App\Models\FavoriteCategories;
 use Livewire\Component;
 
 class CategoriesLinks extends Component {
 
-    public $category;
+    public $selectedCategory;
+    public $categories = [];
+
+    protected $listeners = ['update_category_link'];
 
     public function mount() {
-        $this->category = request()->category;
+        $this->selectedCategory = request()->category;
+
+        $favoriteCategories = FavoriteCategories::firstWhere(['user_id' => auth()->id(), 'team_id' => auth()->user()->currentTeam->id]);
+        if ($favoriteCategories) {
+            $categoriesIds = explode(',', $favoriteCategories->categories);
+            $this->categories = Category::whereIn('id', $categoriesIds)->get();
+        }
     }
 
     public function setCategory($category) {
-        $this->category = $category;
-        $this->emit('queryStringUpdatedCategory', $this->category);
+        $this->selectedCategory = $category;
+        $this->emit('queryStringUpdatedCategory', $this->selectedCategory);
+    }
+
+    public function update_category_link($category) {
+        $this->selectedCategory = $category;
     }
 
     public function render() {

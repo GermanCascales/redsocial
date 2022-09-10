@@ -25,7 +25,7 @@
 
         <div @click="creatingPost = true">
             @if(auth()->user()->hasTeamPermission(auth()->user()->currentTeam, 'create'))
-                <livewire:create-post :categories="$categories" :post_types="$post_types" />
+                <livewire:create-post :categories="$categories" :post_types="$postTypes" />
             @else
                 <p class="text-center text-red text-s mt-4">No tiene permiso para publicar</p>
             @endif
@@ -34,22 +34,24 @@
 </div>
 
 <div :class="creatingPost ? 'md:w-full' : 'md:w-175'" class="w-full px-2 md:px-0 md:w-175 transition-all">
-    <livewire:categories-links />
+    <livewire:categories-links :selectedCategory="$category" />
 
     <div class="mt-8">
         <div class="filters flex flex-col md:flex-row space-y-3 md:space-y-0 md:space-x-6">
             <div class="w-full md:w-1/3">
-                <select name="category" id="category" class="dark:bg-slate-600 w-full rounded-xl border-none px-4 py-2">
-                    @foreach ($categories as $category)
-                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                <select wire:model="category" wire:change="updateCategoryLink" class="dark:bg-slate-600 w-full rounded-xl border-none px-4 py-2">
+                    <option value="">Categoría:</option>
+                    @foreach ($categories as $categoryItem)
+                        <option value="{{ $categoryItem->id }}">{{ $categoryItem->name }}</option>
                     @endforeach
                 </select>
             </div>
             <div class="w-full md:w-1/3">
-                <select name="other_filters" id="other_filters" class="dark:bg-slate-600 w-full rounded-xl border-none px-4 py-2">
-                    <option value="Mensaje">Mensaje</option>
-                    <option value="PreguntaTwo">Pregunta</option>
-                    <option value="Sugerencia">Sugerencia</option>
+                <select wire:model="postType" class="dark:bg-slate-600 w-full rounded-xl border-none px-4 py-2">
+                    <option value="">Tipo:</option>
+                    @foreach ($postTypes as $postType)
+                        <option value="{{ $postType->id }}">{{ $postType->name }}</option>
+                    @endforeach
                 </select>
             </div>
             <div class="w-full md:w-2/3 relative">

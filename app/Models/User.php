@@ -70,4 +70,8 @@ class User extends Authenticatable
     public function comments() {
         return $this->hasMany(Comment::class);
     }
+
+    public function favoriteCategories() {
+        return $this->belongsToMany(Team::class, 'favorite_categories');
+    }
 }

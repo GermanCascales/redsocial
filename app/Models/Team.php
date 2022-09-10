@@ -41,4 +41,12 @@ class Team extends JetstreamTeam
         'updated' => TeamUpdated::class,
         'deleted' => TeamDeleted::class,
     ];
+
+    public function categories() {
+        return $this->hasMany(Category::class);
+    }
+
+    public function favoriteCategories() {
+        return $this->belongsToMany(User::class, 'favorite_categories');
+    }
 }

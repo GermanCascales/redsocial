@@ -30,9 +30,9 @@ class DatabaseSeeder extends Seeder
                                  'password' => '$2y$10$K1HVtrZOdZcM6JyHHyCLfOaXkACqdoOZjIzwdfQ6xH24PznxTIoIq', // 12345678
                                  'current_team_id' => 1]);
         
-        Category::factory()->create(['name' => 'Categoría 1']);
-        Category::factory()->create(['name' => 'Categoría 2']);
-        Category::factory()->create(['name' => 'Categoría 3']);
+        Category::factory()->create(['name' => 'Categoría 1', 'team_id' => 1]);
+        Category::factory()->create(['name' => 'Categoría 2', 'team_id' => 1]);
+        Category::factory()->create(['name' => 'Categoría 3', 'team_id' => 1]);
 
         PostType::factory()->create(['name' => 'Mensaje', 'style' => 'bg-blue text-white']);
         PostType::factory()->create(['name' => 'Pregunta', 'style' => 'bg-yellow']);
