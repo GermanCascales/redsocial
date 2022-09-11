@@ -20,7 +20,7 @@ class PostsIndex extends Component {
     protected $listeners = ['queryStringUpdatedCategory'];
 
     public function mount() {
-        $this->categories = Category::where('team_id', auth()->user()->currentTeam->id)->get();
+        $this->categories = Category::where('team_id', auth()->user()->currentTeam->id)->orderBy('name')->get();
     }
 
     public function queryStringUpdatedCategory($category) {

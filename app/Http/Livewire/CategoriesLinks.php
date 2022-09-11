@@ -19,7 +19,7 @@ class CategoriesLinks extends Component {
         $favoriteCategories = FavoriteCategories::firstWhere(['user_id' => auth()->id(), 'team_id' => auth()->user()->currentTeam->id]);
         if ($favoriteCategories) {
             $categoriesIds = explode(',', $favoriteCategories->categories);
-            $this->categories = Category::whereIn('id', $categoriesIds)->get();
+            $this->categories = Category::whereIn('id', $categoriesIds)->orderBy('name')->get();
         }
     }
 

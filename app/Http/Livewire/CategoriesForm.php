@@ -30,6 +30,6 @@ class CategoriesForm extends Component {
     }
 
     public function render() {
-        return view('livewire.categories-form', ['categories' => Category::all()]);
+        return view('livewire.categories-form', ['categories' => Category::where('team_id', auth()->user()->currentTeam->id)->orderBy('name')->get()]);
     }
 }
