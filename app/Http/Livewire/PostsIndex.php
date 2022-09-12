@@ -56,7 +56,8 @@ class PostsIndex extends Component {
                                                                 ->whereColumn('post_id', 'posts.id')])
                             ->withCount('likes')
                             ->withCount('comments')
-                            ->latest('id')
+                            ->orderBy('pinned', 'desc')
+                            ->latest()
                             ->paginate(10),
             'postTypes' => PostType::all()
         ]);

@@ -113,4 +113,15 @@ class PostPolicy
     public function sign(User $user, Post $post) {
         return $user->id == $post->user_id;
     }
+
+    /**
+     * Determine whether the user can pin the post.
+     *
+     * @param  \App\Models\User  $user
+     * @param  \App\Models\Post  $post
+     * @return \Illuminate\Auth\Access\Response|bool
+     */
+    public function pin(User $user, Post $post) {
+        return $user->hasTeamRole($user->currentTeam, 'admin');
+    }
 }

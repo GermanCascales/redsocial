@@ -22,7 +22,9 @@
                 <livewire:delete-post :post="$post"/>
             @endcan
 
-            <livewire:report-post :post="$post"/>
+            @can('report', $post)
+                <livewire:report-post :post="$post"/>
+            @endcan
         @endpush
 
         <livewire:post-comments :post="$post"/>

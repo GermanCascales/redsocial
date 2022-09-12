@@ -4,9 +4,11 @@ namespace App\Http\Livewire;
 
 use App\Models\Comment;
 use App\Notifications\CommentPosted;
+use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 use Livewire\Component;
 
 class ShowPost extends Component {
+    use AuthorizesRequests;
 
     public $post, $likedPost, $likes, $comment;
 
@@ -53,6 +55,18 @@ class ShowPost extends Component {
 
         $this->emit('commentCreated', $newComment->id);
         $this->emit('alertOkVisible', 'El comentario fue publicado correctamente.');
+    }
+
+    public function pinPost() {
+        $this->authorize('pin', $this->post);
+
+        $this->post->update(['pinned' => !($this->post->pinned)]);
+
+        if ($this->post->pinned) {
+            $this->emit('alertOkVisible', 'El post fue fijado correctamente.');
+        } else {
+            $this->emit('alertOkVisible', 'El post fue desfijado correctamente.');
+        }
     }
 
     public function render() {
