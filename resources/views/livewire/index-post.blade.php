@@ -57,7 +57,7 @@
                         @endphp
                         <div>
                             <a href="{{ route('posts.show', $post) }}">
-                                <img class="inline-flex" src="{{ Storage::url($upload->file) }}" alt="{{ $upload->file }}">
+                                <img class="inline-flex" src="{{ Thumbnail::src(public_path('storage/' . Str::after($upload->file, 'public/')))->widen(300)->url() }}" alt="{{ $upload->file }}">
                             </a>
                         </div>
                     @endif

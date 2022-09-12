@@ -71,7 +71,7 @@
                             <div @click="imageUrl = '{{ Storage::url($upload->file) }}'; imageText = '{{ $upload->name }}'; isLightboxOpen = true"
                                 class="p-1 bg-white cursor-pointer border rounded max-w-sm"
                                 title="Pulsa para ver imagen a tamaño completo">
-                                <img src="{{ Storage::url($upload->file) }}" alt="{{ $upload->file }}">
+                                <img src="{{ Thumbnail::src(public_path('storage/' . Str::after($upload->file, 'public/')))->widen(400)->url() }}" alt="{{ $upload->file }}">
                             </div>
                         @else
                             <a href="{{ Storage::url($upload->file) }}"
