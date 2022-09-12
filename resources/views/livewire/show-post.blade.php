@@ -1,5 +1,6 @@
 <div
-    x-data="{ isCommentsOpen: false, isLightboxOpen: false, imageUrl: '', imageText: '', commentId: null }"
+    x-data="{ isCommentsOpen: false, isLightboxOpen: false, imageUrl: '', imageText: '', commentId: null,
+              shareData: {title: '{{ config('app.name', 'Laravel') }}', text: '{{ $post->title }}', url: '{{ url()->current() }}'} }"
     x-init="Livewire.on('commentCreated', (newComment) => {
                 isCommentsOpen = false;
                 commentId = newComment;
@@ -105,6 +106,7 @@
                                 </svg>
                             </button>
                             <ul x-cloak x-show="isOptionsOpen" x-transition.origin.top.left @click.away="isOptionsOpen = false" @keydown.escape.window="isOptionsOpen = false" class="absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl z-10 py-3 md:ml-8 top-8 md:top-6 right-0 md:left-0">
+                                <li><a href="#" @click.prevent="await navigator.share(shareData)" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Compartir post</a></li>
                                 @can('update', $post)
                                     <li><a href="#" @click.prevent="isOptionsOpen = false; $dispatch('custom-show-edit')" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Editar post</a></li>
                                 @endcan
