@@ -1,4 +1,4 @@
-<div>
+<div id="comments">
     @if ($comments->isEmpty())
         <div class="mx-auto">
             <div class="text-gray text-center font-bold mt-6">Aún no hay comentarios, ¡publica el tuyo!</div>

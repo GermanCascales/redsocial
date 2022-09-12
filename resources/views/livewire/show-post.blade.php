@@ -95,7 +95,7 @@
                         <div>&bull;</div>
                         <div>{{ $post->category->name }}</div>
                         <div>&bull;</div>
-                        <div class="text-gray-900 dark:text-white">{{ $post->comments->count() }} {{ Str::plural('comentario', $post->comments->count()) }}</div>
+                        <div class="text-gray-900 dark:text-white"><a href="#comments">{{ $post->comments->count() }} {{ Str::plural('comentario', $post->comments->count()) }}</a></div>
                     </div>
                     <div x-data="{ isOptionsOpen: false }" class="flex items-center space-x-2 mt-4 md:mt-0">
                         <div class="{{ $post->type->style ? $post->type->style : 'bg-gray-200' }} text-xxs font-bold uppercase leading-none rounded-full text-center h-7 py-2 px-4">{{ $post->type->name }}</div>
