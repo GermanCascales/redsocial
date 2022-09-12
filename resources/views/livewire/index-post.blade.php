@@ -39,15 +39,40 @@
                 {!! trim(strip_tags(htmlspecialchars_decode($post->description))) !!}
             </div>
 
+            <div class="photoThumbs mt-2">
+                @php
+                    $shownPhotos = 0;    
+                @endphp
+                @foreach($post->uploads as $upload)
+                    @if (Str::startsWith($upload->mimeType(), 'image') && $shownPhotos < 5)
+                        @php
+                            $shownPhotos++;
+                        @endphp
+                        <div>
+                            <a href="{{ route('posts.show', $post) }}">
+                                <img class="inline-flex" src="{{ Storage::url($upload->file) }}" alt="{{ $upload->file }}">
+                            </a>
+                        </div>
+                    @endif
+                @endforeach
+            </div>
+
             <div class="flex flex-col md:flex-row md:items-center justify-between mt-6">
                 <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
+                    @if (count($post->uploads) > 0)
+                        <div title="Contiene archivos adjuntos">
+                            <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                <path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+                            </svg>
+                        </div>
+                    @endif
                     <div>{{ $post->created_at->diffForHumans() }}</div>
                     <div>&bull;</div>
                     <div>{{ $post->category->name }}</div>
                     <div>&bull;</div>
                     <div class="text-gray-900 dark:text-white">{{ $comments }} {{ Str::plural('comentario', $comments) }}</div>
                 </div>
-                <div x-data="{ isOpen: false }" class="flex items-center space-x-2 mt-4 md:mt-0">
+                <div class="flex items-center space-x-2 mt-4 md:mt-0">
                     <div class="flex items-center w-2/3 md:hidden mr-5 md:mt-0">
                         <div class="bg-gray-100 text-center rounded-xl h-10 px-4 py-2 pr-8">
                             <div class="text-sm font-bold leading-none @if($likedPost) text-blue @endif">{{ $likes }}</div>
@@ -60,15 +85,6 @@
                         </button>
                     </div>
                     <div class="{{ $post->type->style ? $post->type->style : 'bg-gray-200' }} text-xxs font-bold uppercase leading-none rounded-full text-center h-7 py-2 px-4">{{ $post->type->name }}</div>
-                    <button @click="isOpen = !isOpen" class="relative bg-gray-100 hover:bg-gray-200 border rounded-full h-7 transition duration-150 ease-in py-2 px-3">
-                        <svg fill="currentColor" width="24" height="6">
-                            <path d="M2.97.061A2.969 2.969 0 000 3.031 2.968 2.968 0 002.97 6a2.97 2.97 0 100-5.94zm9.184 0a2.97 2.97 0 100 5.939 2.97 2.97 0 100-5.939zm8.877 0a2.97 2.97 0 10-.003 5.94A2.97 2.97 0 0021.03.06z" style="color: rgba(163, 163, 163, .5)">
-                        </svg>
-                        <ul x-cloak x-show="isOpen" x-transition.origin.top.left @click.away="isOpen = false" @keydown.escape.window="isOpen = false" class="absolute w-44 text-left font-semibold bg-white shadow-dialog rounded-xl z-10 py-3 md:ml-8 top-8 md:top-6 right-0 md:left-0">
-                            <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Marcar como inapropiado</a></li>
-                            <li><a href="#" class="hover:bg-gray-100 block transition duration-150 ease-in px-5 py-3">Eliminar post</a></li>
-                        </ul>
-                    </button>
                 </div>
             </div>
         </div>

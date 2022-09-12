@@ -11,7 +11,7 @@
         <div class="col-span-6 sm:col-span-4">
             <x-jet-label for="categories" value="Categorías" />
             <div class="mt-1 block w-full">
-                <select wire:model="selectedCategories" multiple>
+                <select wire:model="selectedCategories" size="{{ count($categories) }}" multiple>
                     @foreach ($categories as $category)
                         <option value="{{ $category->id }}">{{ $category->name }}</option>
                     @endforeach

@@ -81,6 +81,13 @@
 
                 <div class="flex flex-col md:flex-row md:items-center justify-between mt-6">
                     <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
+                        @if (count($post->uploads) > 0)
+                            <div title="Contiene archivos adjuntos">
+                                <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="w-5 h-5">
+                                    <path stroke-linecap="round" stroke-linejoin="round" d="M18.375 12.739l-7.693 7.693a4.5 4.5 0 01-6.364-6.364l10.94-10.94A3 3 0 1119.5 7.372L8.552 18.32m.009-.01l-.01.01m5.699-9.941l-7.81 7.81a1.5 1.5 0 002.112 2.13" />
+                                </svg>
+                            </div>
+                        @endif
                         <div class="font-bold text-gray-900 dark:text-white">{{ $post->user->name }}</div>
                         <div>&bull;</div>
                         <div>{{ $post->created_at->diffForHumans() }}</div>
@@ -168,8 +175,8 @@
         x-show="isLightboxOpen"
         x-transition.opacity.duration.400ms
         @keydown.escape.window="isLightboxOpen = false"
-        class="fixed top-0 left-0 z-80 w-screen h-screen bg-black/70 flex justify-center items-center">
-        <a @click="isLightboxOpen = false" class="fixed z-90 top-6 right-8 cursor-pointer text-white text-5xl font-bold">&times;</a>
+        class="fixed top-0 left-0 z-20 w-screen h-screen bg-black/70 flex justify-center items-center">
+        <a @click="isLightboxOpen = false" class="fixed z-30 top-6 right-8 cursor-pointer text-white text-5xl font-bold">&times;</a>
         <div @click.away="isLightboxOpen = false" class="flex flex-col items-center">
             <img :src="imageUrl" class="max-w-[800px] max-h-[600px] object-cover" />
             <div class="flex justify-center rounded-xl border border-white bg-black text-white font-semibold py-1 px-2 mt-2" x-text="imageText"></div>
