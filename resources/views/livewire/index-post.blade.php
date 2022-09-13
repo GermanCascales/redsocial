@@ -27,8 +27,8 @@
     </div>
     <div class="flex flex-col md:flex-row flex-1 px-2 py-6">
         <div class="flex-none mx-2 md:mx-0">
-            <a href="#">
-                <img src="{{ $post->user->profile_photo_url }}" alt="avatar" class="w-14 h-14 rounded-xl">
+            <a href="{{ route('users.show', $post->user) }}" title="{{ $post->user->name }}">
+                <img src="{{ $post->user->profilePhotoThumbnail(64) }}" alt="avatar" class="w-14 h-14 rounded-xl">
             </a>
         </div>
         <div class="w-full flex flex-col justify-between mx-2 md:mx-4">
