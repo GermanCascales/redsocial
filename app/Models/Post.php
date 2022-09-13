@@ -50,6 +50,18 @@ class Post extends Model
         return $this->hasOne(Signature::class);
     }
 
+    public function images() {
+        return $this->uploads->filter(function ($item) {
+            return $item->isImage() === true;
+        });
+    }
+
+    public function otherFiles() {
+        return $this->uploads->filter(function ($item) {
+            return $item->isImage() !== true;
+        });
+    }
+
     public function user_liked(User $user) {
         return Like::where('user_id', $user->id)->where('post_id', $this->id)->exists();
     }

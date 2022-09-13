@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Support\Str;
 
 class Upload extends Model {
     use HasFactory;
@@ -22,5 +23,9 @@ class Upload extends Model {
 
     public function mimeType() {
         return Storage::mimeType($this->file);
+    }
+
+    public function isImage() {
+        return Str::startsWith($this->mimeType(), 'image');
     }
 }

@@ -30,7 +30,8 @@
                     commentToScroll.classList.replace('bg-green-50', 'bg-white')
                     commentToScroll.classList.replace('border-green', 'border-blue');
                 }, 3500);
-            @endif">
+            @endif"
+    class="px-2 lg:px-0">
     <div class="post-container relative border @if ($post->signature) border-green @endif bg-white dark:bg-slate-800 rounded-xl flex mt-4">
         @if ($post->signature)
         <div class="absolute rounded-full bg-green text-white text-xs w-5 h-5 flex justify-center items-center -top-2 -right-2" title="Firmado">
@@ -65,27 +66,37 @@
                 <div class="text-gray-600 dark:text-slate-400 mt-3">
                     {!! $post->description !!}
                 </div>
-                <div class="mt-2 space-y-2">
-                    @foreach($post->uploads as $upload)
-                        @if (Str::startsWith($upload->mimeType(), 'image'))
-                            <div @click="imageUrl = '{{ Storage::url($upload->file) }}'; imageText = '{{ $upload->name }}'; isLightboxOpen = true"
-                                class="p-1 bg-white cursor-pointer border rounded max-w-sm"
-                                title="Pulsa para ver imagen a tamaño completo">
-                                <img src="{{ Thumbnail::src(public_path('storage/' . Str::after($upload->file, 'public/')))->widen(400)->url() }}" alt="{{ $upload->file }}">
-                            </div>
-                        @else
-                            <a href="{{ Storage::url($upload->file) }}"
-                               class="flex items-center justify-center max-w-sm py-1 text-sm font-semibold rounded-xl border border-blue hover:bg-blue-hover hover:text-white transition duration-150 ease-in"
-                               title="Pulsa para descargar archivo"
-                               target="_blank">
-                                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" class="w-5 h-5">
-                                    <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
-                                </svg>
-                                <div class="w-5/6 ml-2">{{ $upload->name }}</div>
-                            </a>
-                        @endif
+                <div class="photoThumbs mt-2">
+                    @foreach($post->images() as $upload)
+                        <div @click="imageUrl = '{{ Storage::url($upload->file) }}'; imageText = '{{ $upload->name }}'; isLightboxOpen = true"
+                            class="p-1 bg-white cursor-pointer"
+                            title="Pulsa para ver imagen a tamaño completo">
+                            <img src="{{ Thumbnail::src(public_path('storage/' . Str::after($upload->file, 'public/')))->widen(400)->url() }}" alt="{{ $upload->file }}">
+                        </div>
                     @endforeach
                 </div>
+
+                @if (count($post->otherFiles()) > 0)
+                    <div class="bg-white py-5 sm:grid">
+                        <dd class="mt-1 text-sm text-gray-900 sm:col-span-2 sm:mt-0">
+                        <ul role="list" class="divide-y divide-gray-200 rounded-md border border-gray-200">
+                            @foreach($post->otherFiles() as $upload)
+                                <li class="flex items-center justify-between py-3 pl-3 pr-4 text-sm">
+                                <div class="flex w-0 flex-1 items-center">
+                                    <svg class="h-5 w-5 flex-shrink-0 text-gray-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true">
+                                    <path fill-rule="evenodd" d="M15.621 4.379a3 3 0 00-4.242 0l-7 7a3 3 0 004.241 4.243h.001l.497-.5a.75.75 0 011.064 1.057l-.498.501-.002.002a4.5 4.5 0 01-6.364-6.364l7-7a4.5 4.5 0 016.368 6.36l-3.455 3.553A2.625 2.625 0 119.52 9.52l3.45-3.451a.75.75 0 111.061 1.06l-3.45 3.451a1.125 1.125 0 001.587 1.595l3.454-3.553a3 3 0 000-4.242z" clip-rule="evenodd" />
+                                    </svg>
+                                    <span class="ml-2 w-0 flex-1 truncate">{{ $upload->name }}</span>
+                                </div>
+                                <div class="ml-4 flex-shrink-0">
+                                    <a href="{{ Storage::url($upload->file) }}" target="_blank" class="font-medium text-indigo-600 hover:text-indigo-500">Descargar</a>
+                                </div>
+                                </li>
+                            @endforeach
+                        </ul>
+                        </dd>
+                    </div>
+                @endif
 
                 <div class="flex flex-col md:flex-row md:items-center justify-between mt-6">
                     <div class="flex items-center text-xs text-gray-400 font-semibold space-x-2">
