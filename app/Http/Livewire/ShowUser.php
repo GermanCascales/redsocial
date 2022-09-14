@@ -25,6 +25,7 @@ class ShowUser extends Component {
     public function render() {
         return view('livewire.show-user', [
             'posts' => Post::where('user_id', '=', $this->user->id)
+                            ->whereRelation('category', 'team_id', auth()->user()->currentTeam->id)
                             ->addSelect(['liked_by_user' => Like::select('id')
                                                                 ->where('user_id', auth()->id())
                                                                 ->whereColumn('post_id', 'posts.id')])
