@@ -22,6 +22,8 @@
             </div>
 
             <div class="hidden sm:flex sm:items-center sm:ml-6">
+                @livewire('search-users')
+  
                 <!-- Teams Dropdown -->
                 @if (Laravel\Jetstream\Jetstream::hasTeamFeatures() && Auth::user()->currentTeam != null)
                     <div class="ml-3 relative">
