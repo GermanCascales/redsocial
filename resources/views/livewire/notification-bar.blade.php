@@ -72,10 +72,22 @@
                 </div>
                 <div class="pl-3 w-full">
                     <div class="flex items-center justify-between w-full">
-                        <a wire:click.prevent="markAsRead('{{ $notification->id }}')" href="{{ route('posts.show', $notification->data['post_id']) }}">
-                            <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="font-semibold text-indigo-700">{{ $notification->data['user_name']}}</span> comentó el post <span class="font-semibold text-indigo-700">{{ $notification->data['post_title']}}</span>: <span class="italic">"{{ $notification->data['comment_message']}}"</span></p>
-                            <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500">{{ $notification->created_at->diffForHumans() }}</p>
-                        </a>
+                        @switch($notification->type)
+                            @case('App\Notifications\CommentPosted')
+                                <a wire:click.prevent="markAsRead('{{ $notification->id }}')" href="{{ route('posts.show', $notification->data['post_id']) }}">
+                                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="font-semibold text-indigo-700">{{ $notification->data['user_name']}}</span> comentó el post <span class="font-semibold text-indigo-700">{{ $notification->data['post_title']}}</span>: <span class="italic">"{{ $notification->data['comment_message']}}"</span></p>
+                                    <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500">{{ $notification->created_at->diffForHumans() }}</p>
+                                </a>
+                                @break
+                            @case('App\Notifications\UserFollowed')
+                                <a wire:click.prevent="markAsRead('{{ $notification->id }}')" href="{{ route('users.show', $notification->data['following_user_id']) }}">
+                                    <p tabindex="0" class="focus:outline-none text-sm leading-none"><span class="font-semibold text-indigo-700">{{ $notification->data['following_user_name']}}</span> empezó a seguirte</p>
+                                    <p tabindex="0" class="focus:outline-none text-xs leading-3 pt-1 text-gray-500">{{ $notification->created_at->diffForHumans() }}</p>
+                                </a>
+                                @break
+                            @default
+                        @endswitch
+                        
                     </div>
                 </div>
                 <div class="flex flex-col justify-between pl-2">

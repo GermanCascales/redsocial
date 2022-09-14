@@ -5,6 +5,7 @@ namespace App\Http\Livewire;
 use App\Models\Like;
 use App\Models\Post;
 use App\Models\User;
+use App\Notifications\UserFollowed;
 use Livewire\Component;
 
 class ShowUser extends Component {
@@ -12,6 +13,8 @@ class ShowUser extends Component {
 
     public function followUser() {
         auth()->user()->follows()->attach($this->user->id);
+
+        $this->user->notify(new UserFollowed(auth()->user()));
 
         $this->emit('alertOkVisible', 'Has empezado a seguir a este usuario.');
     }
